@@ -1,8 +1,8 @@
 import React from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/Layout.module.css';
+import Head from 'next/head';
 
 const Layout = (props: any) => {
 	const router = useRouter();
@@ -62,6 +62,9 @@ const Layout = (props: any) => {
 	}
 	return (
 		<div>
+			<Head>
+				<title>VisionCMS</title>
+			</Head>
 			{menu}
 			<main>{props.children}</main>
 		</div>

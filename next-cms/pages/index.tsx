@@ -1,12 +1,10 @@
 import React from 'react';
-import Layout from '@/layouts/Layout';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
 	return (
 		<div>
-			{/* {styles.} */}			
 			<div className={styles.background}>
 				<div className={styles.shape}></div>
 				<div className={styles.shape}></div>
@@ -25,7 +23,3 @@ export default function Home() {
 		</div>
 	);
 }
-
-// <Link className="nav-link" href="/register">
-// 									Register
-// 								</Link>

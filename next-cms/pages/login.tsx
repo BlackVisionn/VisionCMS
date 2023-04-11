@@ -24,9 +24,6 @@ const Login = () => {
 		await router.push('/admin');
 	};
 
-	{
-		/* {styles.} */
-	}
 	return (
 		<Layout>
 			<div className={styles.background}>
