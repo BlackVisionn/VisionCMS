@@ -18,16 +18,24 @@
 	border-color: #2d3748;
 }
 
-.logo {
-	margin-left: 0;
-}
-
 .logo p {
 	color: #2a4365;
 }
 
 .logo span {
 	color: #63b3ed;
+}
+
+.logo:hover p {
+	color: #63b3ed;
+}
+
+.logo:hover span {
+	color: #2a4365;
+}
+
+.homeLink {
+	text-decoration: none;
 }
 
 .form {

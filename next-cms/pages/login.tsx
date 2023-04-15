@@ -1,4 +1,4 @@
-import Layout from '@/layouts/Layout';
+import Layout from '@/components/Layout';
 import { useRouter } from 'next/router';
 import React, { SyntheticEvent, useState } from 'react';
 import styles from '../styles/Login.module.css';
@@ -12,7 +12,7 @@ const Login = () => {
 	const loginUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		await fetch('http://localhost:5000/api/login', {
+		await fetch('http://localhost:5000/auth/login', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			credentials: 'include',
@@ -31,11 +31,13 @@ const Login = () => {
 				<div className={styles.shape}></div>
 			</div>
 			<form onSubmit={loginUser} className={styles.form}>
-				<h3 className={styles.logo}>
-					<p>
-						Vision<span>CMS</span>
-					</p>
-				</h3>
+				<Link href="/" className={styles.homeLink}>
+					<h3 className={styles.logo}>
+						<p>
+							Vision<span>CMS</span>
+						</p>
+					</h3>
+				</Link>
 
 				<label className={styles.label} htmlFor="email">
 					Эл. Почта
