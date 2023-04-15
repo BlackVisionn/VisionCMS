@@ -3,7 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { JwtModule } from '@nestjs/jwt';
+import { Lending } from './entities/lending.entity';
+import { AuthModule } from './auth/auth.module';
+import { LendingModule } from './lending/lending.module';
 
 @Module({
 	imports: [
@@ -14,14 +16,11 @@ import { JwtModule } from '@nestjs/jwt';
 			username: 'postgres',
 			password: 'admin',
 			database: 'vision-cms',
-			entities: [User],
+			entities: [User, Lending],
 			synchronize: true,
 		}),
-		TypeOrmModule.forFeature([User]),
-		JwtModule.register({
-			secret: 'secret',
-			signOptions: { expiresIn: '1d' },
-		}),
+		AuthModule,
+		LendingModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

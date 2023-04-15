@@ -1,12 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Lending } from './lending.entity';
 @Entity('users')
 export class User {
 	@PrimaryGeneratedColumn()
 	id: number;
-    @Column()
+	@Column()
 	name: string;
-    @Column({unique: true})
+	@Column({ unique: true })
 	email: string;
-    @Column()
+	@Column()
 	password: string;
+
+	@OneToMany(() => Lending, (lending) => lending.user)
+	lendings: Lending[];
 }
