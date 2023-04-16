@@ -1,8 +1,4 @@
-import {
-	IsBoolean,	
-	IsOptional,
-	IsString,
-} from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 // import { Category } from "src/category/entities/category.entity";
 
 export class CreateLendingDto {
@@ -63,7 +59,4 @@ export class CreateLendingDto {
 	@IsOptional()
 	@IsBoolean()
 	useFooter: boolean;
-
-	// @IsOptional()
-	// category: Category;
 }

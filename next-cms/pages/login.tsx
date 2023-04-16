@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { SyntheticEvent, useState } from 'react';
 import styles from '../styles/Login.module.css';
 import Link from 'next/link';
+import { UserAPI } from '@/api/user.api';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
@@ -12,15 +13,7 @@ const Login = () => {
 	const loginUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		await fetch('http://localhost:5000/auth/login', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			credentials: 'include',
-			body: JSON.stringify({
-				email,
-				password,
-			}),
-		});
+		await UserAPI.loginUser(email, password);
 		await router.push('/admin');
 	};
 

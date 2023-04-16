@@ -1,18 +1,17 @@
 import Layout from '@/components/Layout';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { UserAPI } from '@/api/user.api';
 
 const NewSite = () => {
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
+
 	useEffect(() => {
 		(async () => {
-			const response = await fetch('http://localhost:5000/auth/user', {
-				credentials: 'include',
-			});
+			const resp = await UserAPI.getUser();
 
-			const content = await response.json();
-			if (content.name == undefined) {
+			if (resp.name == undefined) {
 				setAuth(false);
 				await router.push('/login');
 			} else {

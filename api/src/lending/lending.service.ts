@@ -36,7 +36,12 @@ export class LendingService {
 		await this.repo.remove(lending);
 		return { success: true, lending };
 	}
-	async findOne(condition: any): Promise<Lending> {
-		return this.repo.findOne(condition);
+
+	async findByUserId(userId: number) {
+		return await this.repo.find({
+			where: {
+				userId: userId,
+			},
+		});
 	}
 }

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { SyntheticEvent, useState } from 'react';
 import styles from '../styles/Register.module.css';
 import Link from 'next/link';
+import { UserAPI } from '@/api/user.api';
 
 const Register = () => {
 	const [name, setName] = useState('');
@@ -12,16 +13,7 @@ const Register = () => {
 
 	const registerUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
-
-		await fetch('http://localhost:5000/auth/register', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name,
-				email,
-				password,
-			}),
-		});
+		await UserAPI.registerUser(name, email, password);		
 		await router.push('/login');
 	};
 

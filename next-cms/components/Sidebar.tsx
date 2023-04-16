@@ -8,43 +8,14 @@ import {
 } from 'react-icons/md';
 import styles from '../styles/Sidebar.module.css';
 import React, { useEffect, useState, SyntheticEvent } from 'react';
+import { UserAPI } from '@/api/user.api';
 
 const Sidebar = () => {
 	const router = useRouter();
 
-	const [userId, setUserId] = useState(0);
-
-	useEffect(() => {
-		(async () => {
-			const response = await fetch('http://localhost:5000/auth/user', {
-				credentials: 'include',
-			});
-
-			const user = await response.json();
-			setUserId(user.id);
-		})();
-	});
-
 	const logout = async () => {
-		await fetch('http://localhost:5000/auth/logout', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			credentials: 'include',
-		});
+		await UserAPI.logoutUser();
 		await router.push('/login');
-	};
-
-	const createLending = async (e: SyntheticEvent) => {
-		e.preventDefault();
-
-		await fetch('http://localhost:5000/lending/new', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				userId,
-			}),
-		});
-		await router.push('/admin/new-site');
 	};
 
 	return (
@@ -71,7 +42,6 @@ const Sidebar = () => {
 							className={`${
 								router.pathname == '/admin/new-site' ? `${styles.active}` : ''
 							} ${styles.sidebarLink}`}
-							onClick={createLending}
 						>
 							<span className={styles.sidebarIcon}>
 								<MdAddCircleOutline />

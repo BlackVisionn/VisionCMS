@@ -1,26 +1,25 @@
 import Layout from '@/components/Layout';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { UserAPI } from '@/api/user.api';
 
 const Admin = () => {
 	const [message, setMessage] = useState('');
+
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
 
 	useEffect(() => {
 		(async () => {
-			const response = await fetch('http://localhost:5000/auth/user', {
-				credentials: 'include',
-			});
+			const resp = await UserAPI.getUser();
 
-			const content = await response.json();
-			if (content.name == undefined) {
+			if (resp.name == undefined) {
 				setAuth(false);
 				await router.push('/login');
 			} else {
 				setMessage(
-					`Вы вошли как: ${content.name}
-					Эл. почта: ${content.email} + ${content.id}`,
+					`Вы вошли как: ${resp.name}
+					Эл. почта: ${resp.email} + ${resp.id}`,
 				);
 				setAuth(true);
 			}
