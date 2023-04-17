@@ -1,0 +1,21 @@
+.modal {
+	transform: scale(0);
+}
+.modalActive {
+	height: 100%;
+	width: 100%;
+	background-color: #2a4365;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: block;
+}
+
+.closeBtn {
+	font-size: 40px;
+	margin-left: 97%;
+	cursor: pointer;
+}
+.closeBtn:hover {
+	color: red;
+}

@@ -7,7 +7,6 @@ import {
 	MdFormatListBulleted,
 } from 'react-icons/md';
 import styles from '../styles/Sidebar.module.css';
-import React, { useEffect, useState, SyntheticEvent } from 'react';
 import { UserAPI } from '@/api/user.api';
 
 const Sidebar = () => {

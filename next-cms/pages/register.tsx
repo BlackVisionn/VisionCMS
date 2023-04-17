@@ -13,7 +13,7 @@ const Register = () => {
 
 	const registerUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		await UserAPI.registerUser(name, email, password);		
+		await UserAPI.registerUser(name, email, password);
 		await router.push('/login');
 	};
 

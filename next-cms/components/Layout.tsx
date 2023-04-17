@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Sidebar from './Sidebar';
-import styles from '../styles/Layout.module.css'
+import styles from '../styles/Layout.module.css';
 
 const Layout = (props: any) => {
 	let menu;

@@ -70,4 +70,53 @@ export class LendingAPI {
 			method: 'DELETE',
 		});
 	}
+
+	public static async update(
+		siteID: number,
+		useHeader: boolean,
+		useMainImg: boolean,
+		useNavIntroduction: boolean,
+		useNavAbout: boolean,
+		useNavContact: boolean,
+		useFooter: boolean,
+		headerName: string,
+		headerDescription: string,
+		mainImg: string,
+		navIntroduction: string,
+		introductionTitle: string,
+		introductionDescription: string,
+		navAbout: string,
+		aboutTitle: string,
+		aboutDescription: string,
+		navContact: string,
+		contactTitle: string,
+		contactDescription: string,
+		footerCompany: string,
+	) {
+		await fetch(`http://localhost:5000/lending/${siteID}`, {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				useHeader,
+				useMainImg,
+				useNavIntroduction,
+				useNavAbout,
+				useNavContact,
+				useFooter,
+				headerName,
+				headerDescription,
+				mainImg,
+				navIntroduction,
+				introductionTitle,
+				introductionDescription,
+				navAbout,
+				aboutTitle,
+				aboutDescription,
+				navContact,
+				contactTitle,
+				contactDescription,
+				footerCompany,
+			}),
+		});
+	}
 }
