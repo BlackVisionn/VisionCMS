@@ -38,4 +38,10 @@ export class LendingAPI {
 			}),
 		});
 	}
+
+	public static async delete(siteID: number) {
+		await fetch(`http://localhost:5000/lending/${siteID}`, {
+			method: 'DELETE',
+		});
+	}
 }
