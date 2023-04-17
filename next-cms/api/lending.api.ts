@@ -14,4 +14,28 @@ export class LendingAPI {
 
 		return data;
 	}
+
+	public static async createLending(
+		useHeader: boolean,
+		useMainImg: boolean,
+		useNavIntroduction: boolean,
+		useNavAbout: boolean,
+		useNavContact: boolean,
+		useFooter: boolean,
+		userId: number,
+	) {
+		await fetch('http://localhost:5000/lending/new', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				useHeader,
+				useMainImg,
+				useNavIntroduction,
+				useNavAbout,
+				useNavContact,
+				useFooter,
+				userId,
+			}),
+		});
+	}
 }
