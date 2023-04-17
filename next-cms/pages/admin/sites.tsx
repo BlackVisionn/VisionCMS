@@ -10,28 +10,24 @@ import styles from '../../styles/Site.module.css';
 const Sites = () => {
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
+	const [userId, setUserId] = useState(0);
+	const [sites, setSites] = useState<LendingDTO[]>([]);
 
 	useEffect(() => {
 		(async () => {
-			const resp = await UserAPI.getUser();
+			const user = await UserAPI.getUser();
 
-			if (resp.name == undefined) {
+			if (user.name == undefined) {
 				setAuth(false);
 				await router.push('/login');
 			} else {
 				setAuth(true);
+				setUserId(user.id);
 			}
+			const resp = await LendingAPI.getAllForCurrentUser(userId);
+			setSites(resp);
 		})();
 	});
-	const [sites, setSites] = useState<LendingDTO[]>([]);
-
-	useEffect(() => {
-		async function fetchAll() {
-			const resp = await LendingAPI.getAllForCurrentUser(2);
-			setSites(resp);
-		}
-		fetchAll();
-	}, []);
 
 	return (
 		<Layout auth={auth}>
@@ -39,7 +35,7 @@ const Sites = () => {
 			<form className={styles.form}>
 				<ul className={styles.sitesList}>
 					{sites.map((site) => {
-						return <Site data={site} />;
+						return <Site data={site} key={site.id} />;
 					})}
 				</ul>
 			</form>

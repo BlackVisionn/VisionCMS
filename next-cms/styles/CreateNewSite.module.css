@@ -43,3 +43,7 @@
 .h1 {
 	color: #2a4365;
 }
+
+.inputs {
+	display: block;
+}

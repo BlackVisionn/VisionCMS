@@ -18,38 +18,29 @@ const NewSite = () => {
 	const [usingAbout, setUsingAbout] = useState(false);
 	const [usingContact, setUsingContact] = useState(false);
 	const [usingFooter, setUsingFooter] = useState(false);
+
+	const [headerName, setHeaderName] = useState<any>();
+	const [headerDescription, setHeaderDescription] = useState<any>();
+	const [mainImg, setMainImg] = useState<any>();
+	const [navIntroduction, setNavIntroduction] = useState<any>();
+	const [introductionTitle, setIntroductionTitle] = useState<any>();
+	const [introductionDescription, setIntroductionDescription] = useState<any>();
+	const [navAbout, setNavAbout] = useState<any>();
+	const [aboutTitle, setAboutTitle] = useState<any>();
+	const [aboutDescription, setAboutDescription] = useState<any>();
+	const [navContact, setNavContact] = useState<any>();
+	const [contactTitle, setContactTitle] = useState<any>();
+	const [contactDescription, setContactDescription] = useState<any>();
+	const [footerCompany, setFooterCompany] = useState<any>();
 	const [userId, setUserId] = useState(0);
 	let view;
 
-	const changeView = async () => {
-		if (isChoosingPage == true && isComponentsPage == false) {
-			setIsChoosingPage(false);
-			setIsComponentsPage(true);
-		} else if (isComponentsPage == true && isCreationPage == false) {
-			setIsComponentsPage(false);
-			setIsCreationPage(true);
-		} else if (isCreationPage == true && isChoosingPage == false) {
-			setIsCreationPage(false);
-			setIsChoosingPage(true);
-		}
-	};
-	const createComponents = async (e: SyntheticEvent) => {
-		e.preventDefault();
-		await LendingAPI.createLending(
-			usingHeader,
-			usingImg,
-			usingIntroduction,
-			usingAbout,
-			usingContact,
-			usingFooter,
-			userId,
-		);
-		changeView();
-	};
-	const updateComponents = async (e: SyntheticEvent) => {
-		e.preventDefault();
-		changeView();
-	};
+	const [header, setHeader] = useState<any>();
+	const [img, setImg] = useState<any>();
+	const [introduction, setIntroduction] = useState<any>();
+	const [about, setAbout] = useState<any>();
+	const [contact, setContact] = useState<any>();
+	const [footer, setFooter] = useState<any>();
 
 	useEffect(() => {
 		(async () => {
@@ -64,6 +55,188 @@ const NewSite = () => {
 			}
 		})();
 	});
+
+	const changeView = async () => {
+		if (isChoosingPage == true && isComponentsPage == false) {
+			setIsChoosingPage(false);
+			setIsComponentsPage(true);
+		} else if (isComponentsPage == true && isCreationPage == false) {
+			setIsComponentsPage(false);
+			setIsCreationPage(true);
+		} else if (isCreationPage == true && isChoosingPage == false) {
+			setIsCreationPage(false);
+			setIsChoosingPage(true);
+		}
+	};
+	const setComponents = async () => {
+		let menu;
+		if (usingHeader) {
+			menu = (
+				<div>
+					<label htmlFor="">headerName</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setHeaderName(e.target.value)}
+					/>
+					<label htmlFor="">headerDescription</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setHeaderDescription(e.target.value)}
+					/>
+				</div>
+			);
+			setHeader(menu);
+		} else {
+			menu = <div></div>;
+			setHeader(menu);
+		}
+		if (usingImg) {
+			menu = (
+				<div>
+					<label htmlFor="">IMG</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setMainImg(e.target.value)}
+					/>
+				</div>
+			);
+			setImg(menu);
+		} else {
+			menu = <div></div>;
+			setImg(menu);
+		}
+		if (usingIntroduction) {
+			menu = (
+				<div>
+					<label htmlFor="">navIntroduction</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setNavIntroduction(e.target.value)}
+					/>
+					<label htmlFor="">introductionTitle</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setIntroductionTitle(e.target.value)}
+					/>
+					<label htmlFor="">introductionDescription</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setIntroductionDescription(e.target.value)}
+					/>
+				</div>
+			);
+			setIntroduction(menu);
+		} else {
+			menu = <div></div>;
+			setIntroduction(menu);
+		}
+		if (usingAbout) {
+			menu = (
+				<div>
+					<label htmlFor="">navAbout</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setNavAbout(e.target.value)}
+					/>
+					<label htmlFor="">aboutTitle</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setAboutTitle(e.target.value)}
+					/>
+					<label htmlFor="">aboutDescription</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setAboutDescription(e.target.value)}
+					/>
+				</div>
+			);
+			setAbout(menu);
+		} else {
+			menu = <div></div>;
+			setAbout(menu);
+		}
+		if (usingContact) {
+			menu = (
+				<div>
+					<label htmlFor="">navContact</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setNavContact(e.target.value)}
+					/>
+					<label htmlFor="">contactTitle</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setContactTitle(e.target.value)}
+					/>
+					<label htmlFor="">contactDescription</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setContactDescription(e.target.value)}
+					/>
+				</div>
+			);
+			setContact(menu);
+		} else {
+			menu = <div></div>;
+			setContact(menu);
+		}
+		if (usingFooter) {
+			menu = (
+				<div>
+					<label htmlFor="">footerCompany</label>
+					<input
+						className={styles.inputs}
+						type="text"
+						onChange={(e) => setFooterCompany(e.target.value)}
+					/>
+				</div>
+			);
+			setFooter(menu);
+		} else {
+			menu = <div></div>;
+			setFooter(menu);
+		}
+		changeView();
+	};
+	const createSite = async (e: SyntheticEvent) => {
+		e.preventDefault();
+		await LendingAPI.createLending(
+			usingHeader,
+			usingImg,
+			usingIntroduction,
+			usingAbout,
+			usingContact,
+			usingFooter,
+			headerName,
+			headerDescription,
+			mainImg,
+			navIntroduction,
+			introductionTitle,
+			introductionDescription,
+			navAbout,
+			aboutTitle,
+			aboutDescription,
+			navContact,
+			contactTitle,
+			contactDescription,
+			footerCompany,
+			userId,
+		);
+		changeView();
+	};
+
 	if (isChoosingPage) {
 		view = (
 			<div>
@@ -75,7 +248,7 @@ const NewSite = () => {
 		);
 	} else if (isComponentsPage) {
 		view = (
-			<form onSubmit={createComponents}>
+			<div>
 				<h1 className={styles.h1}>
 					Выберите компоненты которые будут использоваться на вашем сайте
 				</h1>
@@ -124,15 +297,21 @@ const NewSite = () => {
 					</li>
 				</ul>
 
-				<button type="submit" className={styles.btnAction}>
+				<button className={styles.btnAction} onClick={setComponents}>
 					Применить
 				</button>
-			</form>
+			</div>
 		);
 	} else if (isCreationPage) {
 		view = (
-			<form onSubmit={updateComponents}>
+			<form onSubmit={createSite} className={styles.inputs}>
 				<h1 className={styles.h1}>Введите свои значения компонентов</h1>
+				{header}
+				{img}
+				{introduction}
+				{about}
+				{contact}
+				{footer}
 
 				<button type="submit" className={styles.btnAction}>
 					Применить
