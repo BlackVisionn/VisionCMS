@@ -1,0 +1,63 @@
+.sitesList {
+	display: block;
+	font-size: 30px;
+	list-style-type: none;
+	color: white;
+}
+
+.listItem {
+	display: flex;
+	justify-content: space-between;
+	color: white;
+	margin-bottom: 20px;
+	background-color: #2a4365;
+	border-radius: 25px;
+}
+
+.label {
+	margin-left: 20px;
+	margin-top: 1%;
+}
+
+.icon {
+	font-size: 50px;
+	display: inline-block;
+	justify-content: center;
+}
+
+.btn {
+	text-align: right;
+	margin-left: 15px;
+	display: inline-block;
+	color: white;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+.btns {
+	display: inline;
+	margin-right: 1%;
+}
+
+.btn:hover {
+	color: #63b3ed;
+}
+
+.form {
+	height: 75%;
+	width: 70%;
+	background-color: #edf2f7;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 60%;
+	border-radius: 10px;
+	backdrop-filter: blur(10px);
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+	padding: 50px 35px;
+}
+
+.h1 {
+	color: #2a4365;
+}

@@ -28,6 +28,9 @@ const NewSite = () => {
 		} else if (isComponentsPage == true && isCreationPage == false) {
 			setIsComponentsPage(false);
 			setIsCreationPage(true);
+		} else if (isCreationPage == true && isChoosingPage == false) {
+			setIsCreationPage(false);
+			setIsChoosingPage(true);
 		}
 	};
 	const createComponents = async (e: SyntheticEvent) => {
@@ -41,6 +44,10 @@ const NewSite = () => {
 			usingFooter,
 			userId,
 		);
+		changeView();
+	};
+	const updateComponents = async (e: SyntheticEvent) => {
+		e.preventDefault();
 		changeView();
 	};
 
@@ -60,7 +67,7 @@ const NewSite = () => {
 	if (isChoosingPage) {
 		view = (
 			<div>
-				<h1>Выберите тип сайта</h1>
+				<h1 className={styles.h1}>Выберите тип сайта</h1>
 				<button className={styles.btn} onClick={changeView}>
 					Сайт Лендинг
 				</button>
@@ -69,7 +76,9 @@ const NewSite = () => {
 	} else if (isComponentsPage) {
 		view = (
 			<form onSubmit={createComponents}>
-				<h1>КОМПОНЕНТЫ</h1>
+				<h1 className={styles.h1}>
+					Выберите компоненты которые будут использоваться на вашем сайте
+				</h1>
 				<ul className={styles.componentsList}>
 					<li>
 						<input
@@ -122,9 +131,13 @@ const NewSite = () => {
 		);
 	} else if (isCreationPage) {
 		view = (
-			<div>
-				<h1>Создание</h1>
-			</div>
+			<form onSubmit={updateComponents}>
+				<h1 className={styles.h1}>Введите свои значения компонентов</h1>
+
+				<button type="submit" className={styles.btnAction}>
+					Применить
+				</button>
+			</form>
 		);
 	}
 	return <Layout auth={auth}>{view}</Layout>;
