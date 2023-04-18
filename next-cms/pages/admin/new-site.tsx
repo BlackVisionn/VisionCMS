@@ -41,6 +41,7 @@ const NewSite = () => {
 	const [about, setAbout] = useState<any>();
 	const [contact, setContact] = useState<any>();
 	const [footer, setFooter] = useState<any>();
+	const [empty, setEmpty] = useState<any>();
 
 	useEffect(() => {
 		(async () => {
@@ -70,21 +71,47 @@ const NewSite = () => {
 	};
 	const setComponents = async () => {
 		let menu;
+		if (
+			!usingHeader &&
+			!usingImg &&
+			!usingIntroduction &&
+			!usingAbout &&
+			!usingContact &&
+			!usingFooter
+		) {
+			menu = (
+				<div>
+					<h1 className={styles.h1}>
+						Ваш сайт не содержит компонентов и будет пустым
+					</h1>
+				</div>
+			);
+			setEmpty(menu);
+		} else {
+			menu = <div></div>;
+			setEmpty(menu);
+		}
+
 		if (usingHeader) {
 			menu = (
 				<div>
-					<label htmlFor="">headerName</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setHeaderName(e.target.value)}
-					/>
-					<label htmlFor="">headerDescription</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setHeaderDescription(e.target.value)}
-					/>
+					<h1 className={styles.h1}>
+						Введите название вашего сайта и его описание
+					</h1>
+					<div>
+						<label htmlFor="">headerName</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setHeaderName(e.target.value)}
+						/>
+						<label htmlFor="">headerDescription</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setHeaderDescription(e.target.value)}
+						/>
+					</div>
 				</div>
 			);
 			setHeader(menu);
@@ -95,12 +122,15 @@ const NewSite = () => {
 		if (usingImg) {
 			menu = (
 				<div>
-					<label htmlFor="">IMG</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setMainImg(e.target.value)}
-					/>
+					<h1 className={styles.h1}>Введите ссылку на свою картинку</h1>
+					<div>
+						<label htmlFor="">IMG</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setMainImg(e.target.value)}
+						/>
+					</div>
 				</div>
 			);
 			setImg(menu);
@@ -111,24 +141,29 @@ const NewSite = () => {
 		if (usingIntroduction) {
 			menu = (
 				<div>
-					<label htmlFor="">navIntroduction</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setNavIntroduction(e.target.value)}
-					/>
-					<label htmlFor="">introductionTitle</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setIntroductionTitle(e.target.value)}
-					/>
-					<label htmlFor="">introductionDescription</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setIntroductionDescription(e.target.value)}
-					/>
+					<h1 className={styles.h1}>
+						Введите название вашей кнопки навигации её заголовок и описание
+					</h1>
+					<div>
+						<label htmlFor="">navIntroduction</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setNavIntroduction(e.target.value)}
+						/>
+						<label htmlFor="">introductionTitle</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setIntroductionTitle(e.target.value)}
+						/>
+						<label htmlFor="">introductionDescription</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setIntroductionDescription(e.target.value)}
+						/>
+					</div>
 				</div>
 			);
 			setIntroduction(menu);
@@ -139,24 +174,29 @@ const NewSite = () => {
 		if (usingAbout) {
 			menu = (
 				<div>
-					<label htmlFor="">navAbout</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setNavAbout(e.target.value)}
-					/>
-					<label htmlFor="">aboutTitle</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setAboutTitle(e.target.value)}
-					/>
-					<label htmlFor="">aboutDescription</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setAboutDescription(e.target.value)}
-					/>
+					<h1 className={styles.h1}>
+						Введите название вашей кнопки навигации её заголовок и описание
+					</h1>
+					<div>
+						<label htmlFor="">navAbout</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setNavAbout(e.target.value)}
+						/>
+						<label htmlFor="">aboutTitle</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setAboutTitle(e.target.value)}
+						/>
+						<label htmlFor="">aboutDescription</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setAboutDescription(e.target.value)}
+						/>
+					</div>
 				</div>
 			);
 			setAbout(menu);
@@ -167,24 +207,29 @@ const NewSite = () => {
 		if (usingContact) {
 			menu = (
 				<div>
-					<label htmlFor="">navContact</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setNavContact(e.target.value)}
-					/>
-					<label htmlFor="">contactTitle</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setContactTitle(e.target.value)}
-					/>
-					<label htmlFor="">contactDescription</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setContactDescription(e.target.value)}
-					/>
+					<h1 className={styles.h1}>
+						Введите название вашей кнопки навигации её заголовок и описание
+					</h1>
+					<div>
+						<label htmlFor="">navContact</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setNavContact(e.target.value)}
+						/>
+						<label htmlFor="">contactTitle</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setContactTitle(e.target.value)}
+						/>
+						<label htmlFor="">contactDescription</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setContactDescription(e.target.value)}
+						/>
+					</div>
 				</div>
 			);
 			setContact(menu);
@@ -195,12 +240,17 @@ const NewSite = () => {
 		if (usingFooter) {
 			menu = (
 				<div>
-					<label htmlFor="">footerCompany</label>
-					<input
-						className={styles.inputs}
-						type="text"
-						onChange={(e) => setFooterCompany(e.target.value)}
-					/>
+					<h1 className={styles.h1}>
+						Введите название вашей комании для отображения в подвале сайта
+					</h1>
+					<div>
+						<label htmlFor="">footerCompany</label>
+						<input
+							className={styles.inputs}
+							type="text"
+							onChange={(e) => setFooterCompany(e.target.value)}
+						/>
+					</div>
 				</div>
 			);
 			setFooter(menu);
@@ -305,7 +355,7 @@ const NewSite = () => {
 	} else if (isCreationPage) {
 		view = (
 			<form onSubmit={createSite} className={styles.inputs}>
-				<h1 className={styles.h1}>Введите свои значения компонентов</h1>
+				{empty}
 				{header}
 				{img}
 				{introduction}
