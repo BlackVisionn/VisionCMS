@@ -4,15 +4,13 @@ import styles from '../styles/Site.module.css';
 import { AiOutlineEdit, AiOutlineEye } from 'react-icons/ai';
 import { BiTrash } from 'react-icons/bi';
 import { LendingAPI } from '@/api/lending.api';
-import EditSiteModal from './EditSiteModal';
+import Link from 'next/link';
 
 interface Props {
 	data: LendingDTO;
 }
 
 const Site = ({ data }: Props) => {
-	const [modalActive, setModalActive] = useState<boolean>();
-
 	const deleteSite = async () => {
 		await LendingAPI.delete(data.id);
 	};
@@ -23,16 +21,16 @@ const Site = ({ data }: Props) => {
 				<div className={styles.listItem}>
 					<label className={styles.label}>{data.headerName}</label>
 					<div className={styles.btns}>
-						<a className={styles.btn} onClick={() => setModalActive(true)}>
+						<Link href={`/admin/site/edit/${data.id}`} className={styles.btn}>
 							<span className={styles.icon}>
 								<AiOutlineEdit />
 							</span>
-						</a>
-						<button className={styles.btn}>
+						</Link>
+						<Link href={`/admin/site/${data.id}`} className={styles.btn}>
 							<span className={styles.icon}>
 								<AiOutlineEye />
 							</span>
-						</button>
+						</Link>
 						<button className={styles.btn} onClick={deleteSite}>
 							<span className={styles.icon}>
 								<BiTrash />
@@ -41,7 +39,6 @@ const Site = ({ data }: Props) => {
 					</div>
 				</div>
 			</li>
-			<EditSiteModal active={modalActive} setActive={setModalActive} />
 		</div>
 	);
 };

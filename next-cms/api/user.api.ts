@@ -44,5 +44,5 @@ export class UserAPI {
 			headers: { 'Content-Type': 'application/json' },
 			credentials: 'include',
 		});
-	}	
+	}
 }

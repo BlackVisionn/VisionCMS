@@ -71,14 +71,8 @@ export class LendingAPI {
 		});
 	}
 
-	public static async update(
+	public static async updateLending(
 		siteID: number,
-		useHeader: boolean,
-		useMainImg: boolean,
-		useNavIntroduction: boolean,
-		useNavAbout: boolean,
-		useNavContact: boolean,
-		useFooter: boolean,
 		headerName: string,
 		headerDescription: string,
 		mainImg: string,
@@ -97,12 +91,6 @@ export class LendingAPI {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				useHeader,
-				useMainImg,
-				useNavIntroduction,
-				useNavAbout,
-				useNavContact,
-				useFooter,
 				headerName,
 				headerDescription,
 				mainImg,
