@@ -15,27 +15,27 @@ import { UpdatePortfolioDto } from './dto/update-portfolio.dto';
 export class PortfolioController {
 	constructor(private readonly portfolioService: PortfolioService) {}
 	@Post('new')
-	async createLending(@Body() createPortfolioDto: CreatePortfolioDto) {
-		const lending = await this.portfolioService.create(createPortfolioDto);
+	async createPortfolio(@Body() createPortfolioDto: CreatePortfolioDto) {
+		const portfolio = await this.portfolioService.create(createPortfolioDto);
 
-		return lending;
+		return portfolio;
 	}
 
-	// @Patch(':id')
-	// async updateLending(
-	// 	@Param('id') id: number,
-	// 	@Body() updatePortfolioDto: UpdatePortfolioDto,
-	// ) {
-	// 	return await this.portfolioService.update(id, updatePortfolioDto);
-	// }
+	@Patch(':id')
+	async updatePortfolio(
+		@Param('id') id: number,
+		@Body() updatePortfolioDto: UpdatePortfolioDto,
+	) {
+		return await this.portfolioService.update(id, updatePortfolioDto);
+	}
 
-	// @Delete(':id')
-	// async deleteLending(@Param('id') id: number) {
-	// 	return await this.portfolioService.remove(id);
-	// }
+	@Delete(':id')
+	async deletePortfolio(@Param('id') id: number) {
+		return await this.portfolioService.remove(id);
+	}
 
-	// @Get('/sites/:userId')
-	// async user(@Param('userId') userId: number) {
-	// 	return await this.portfolioService.findByUserId(userId);
-	// }
+	@Get('/sites/:userId')
+	async user(@Param('userId') userId: number) {
+		return await this.portfolioService.findByUserId(userId);
+	}
 }

@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import {
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	OneToOne,
+	JoinColumn,
+} from 'typeorm';
 import { Portfolio } from './portfolio.entity';
 @Entity('portfolio-components')
 export class PortfolioComponents {
@@ -21,7 +27,9 @@ export class PortfolioComponents {
 	@Column({ default: true })
 	useFooter: boolean;
 
-	@OneToOne(() => Portfolio, (portfolio) => portfolio.user)
-	portfolios: Portfolio[];
-	
+	@OneToOne(() => Portfolio, (portfolio) => portfolio.portfolioComponents, {
+		onDelete: 'CASCADE',
+	})
+	@JoinColumn()
+	portfolio: Portfolio;
 }

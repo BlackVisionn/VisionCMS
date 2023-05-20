@@ -21,7 +21,7 @@ export class PortfolioService {
 			},
 		});
 		if (!portfolio) {
-			throw new BadRequestException('Lending not found');
+			throw new BadRequestException('Portfolio not found');
 		}
 		Object.assign(portfolio, updatePortfolioDto);
 		return this.repo.save(portfolio);

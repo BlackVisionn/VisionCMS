@@ -146,17 +146,9 @@ export class Portfolio {
 
 	@Column({ default: null })
 	userId: number;
-	@Column({ default: null })
-	componentsId: number;
 
-	@OneToOne(() => PortfolioComponents, (component) => component.portfolios, {
-		eager: true,
-	})
-	@JoinColumn({
-		name: 'componentsId',
-		referencedColumnName: 'id',
-	})
-	component: PortfolioComponents;
+	@OneToOne(() => PortfolioComponents)
+	portfolioComponents: PortfolioComponents;
 
 	@ManyToOne(() => User, (user) => user.portfolios, { eager: true })
 	@JoinColumn({

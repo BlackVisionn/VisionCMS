@@ -9,6 +9,7 @@ import { LendingModule } from './lending/lending.module';
 import { Portfolio } from './entities/portfolio.entity';
 import { PortfolioComponents } from './entities/portfolio-components.entity';
 import { PortfolioModule } from './portfolio/portfolio.module';
+import { PortfolioComponentsModule } from './portfolio-components/portfolio-components.module';
 
 @Module({
 	imports: [
@@ -25,6 +26,7 @@ import { PortfolioModule } from './portfolio/portfolio.module';
 		AuthModule,
 		LendingModule,
 		PortfolioModule,
+		PortfolioComponentsModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
