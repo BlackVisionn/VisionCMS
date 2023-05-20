@@ -6,6 +6,9 @@ import { User } from './entities/user.entity';
 import { Lending } from './entities/lending.entity';
 import { AuthModule } from './auth/auth.module';
 import { LendingModule } from './lending/lending.module';
+import { Portfolio } from './entities/portfolio.entity';
+import { PortfolioComponents } from './entities/portfolio-components.entity';
+import { PortfolioModule } from './portfolio/portfolio.module';
 
 @Module({
 	imports: [
@@ -16,11 +19,12 @@ import { LendingModule } from './lending/lending.module';
 			username: 'postgres',
 			password: 'admin',
 			database: 'vision-cms',
-			entities: [User, Lending],
+			entities: [User, Lending, Portfolio, PortfolioComponents],
 			synchronize: true,
 		}),
 		AuthModule,
 		LendingModule,
+		PortfolioModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

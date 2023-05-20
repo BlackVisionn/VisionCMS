@@ -98,17 +98,19 @@ const NewSite = () => {
 					<h1 className={styles.h1}>
 						Введите название вашего сайта и его описание
 					</h1>
-					<div>
-						<label htmlFor="">headerName</label>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>Заголовок сайта.</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setHeaderName(e.target.value)}
 						/>
-						<label htmlFor="">headerDescription</label>
+					</div>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>Краткое описание заголовка.</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setHeaderDescription(e.target.value)}
 						/>
 					</div>
@@ -123,11 +125,13 @@ const NewSite = () => {
 			menu = (
 				<div>
 					<h1 className={styles.h1}>Введите ссылку на свою картинку</h1>
-					<div>
-						<label htmlFor="">IMG</label>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Ссылка на картинку главного экрана.
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setMainImg(e.target.value)}
 						/>
 					</div>
@@ -144,23 +148,33 @@ const NewSite = () => {
 					<h1 className={styles.h1}>
 						Введите название вашей кнопки навигации её заголовок и описание
 					</h1>
-					<div>
-						<label htmlFor="">navIntroduction</label>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Название кнопки раздела "Презентации продукта".
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setNavIntroduction(e.target.value)}
 						/>
-						<label htmlFor="">introductionTitle</label>
+					</div>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Заголовок раздела "Презентации продукта".
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setIntroductionTitle(e.target.value)}
 						/>
-						<label htmlFor="">introductionDescription</label>
+					</div>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Описание раздела "Презентации продукта".
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setIntroductionDescription(e.target.value)}
 						/>
 					</div>
@@ -177,23 +191,29 @@ const NewSite = () => {
 					<h1 className={styles.h1}>
 						Введите название вашей кнопки навигации её заголовок и описание
 					</h1>
-					<div>
-						<label htmlFor="">navAbout</label>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Название кнопки раздела "О нас".
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setNavAbout(e.target.value)}
 						/>
-						<label htmlFor="">aboutTitle</label>
+					</div>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>Заголовок раздела "О нас".</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setAboutTitle(e.target.value)}
 						/>
-						<label htmlFor="">aboutDescription</label>
+					</div>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>Описание раздела "О нас".</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setAboutDescription(e.target.value)}
 						/>
 					</div>
@@ -210,23 +230,31 @@ const NewSite = () => {
 					<h1 className={styles.h1}>
 						Введите название вашей кнопки навигации её заголовок и описание
 					</h1>
-					<div>
-						<label htmlFor="">navContact</label>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Название кнопки раздела "Контакты".
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setNavContact(e.target.value)}
 						/>
-						<label htmlFor="">contactTitle</label>
+					</div>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Заголовок раздела "Контакты".
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setContactTitle(e.target.value)}
 						/>
-						<label htmlFor="">contactDescription</label>
+					</div>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>Описание раздела "Контакты".</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setContactDescription(e.target.value)}
 						/>
 					</div>
@@ -243,11 +271,13 @@ const NewSite = () => {
 					<h1 className={styles.h1}>
 						Введите название вашей комании для отображения в подвале сайта
 					</h1>
-					<div>
-						<label htmlFor="">footerCompany</label>
+					<div className={styles.inputWrapper}>
+						<label className={styles.label}>
+							Название вашей компании для подвала сайта.
+						</label>
 						<input
-							className={styles.inputs}
 							type="text"
+							className={styles.input}
 							onChange={(e) => setFooterCompany(e.target.value)}
 						/>
 					</div>
@@ -290,9 +320,12 @@ const NewSite = () => {
 	if (isChoosingPage) {
 		view = (
 			<div>
-				<h1 className={styles.h1}>Выберите тип сайта</h1>
+				<h1 className={styles.h1}>Выберите шаблон сайта</h1>
 				<button className={styles.btn} onClick={changeView}>
 					Сайт Лендинг
+				</button>
+				<button className={styles.btn} onClick={changeView}>
+					Сайт Портфолио
 				</button>
 			</div>
 		);
@@ -304,46 +337,118 @@ const NewSite = () => {
 				</h1>
 				<ul className={styles.componentsList}>
 					<li>
-						<input
-							type="checkbox"
-							onChange={(e) => setUsingHeader(e.target.checked)}
-						/>
-						<label htmlFor="">Заголовок сайта</label>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUsingHeader(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Заголовок сайта
+						</label>
 					</li>
 					<li>
-						<input
-							type="checkbox"
-							onChange={(e) => setUsingImg(e.target.checked)}
-						/>
-						<label htmlFor="">Картинка</label>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUsingImg(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Картинка
+						</label>
 					</li>
 					<li>
-						<input
-							type="checkbox"
-							onChange={(e) => setUsingIntroduction(e.target.checked)}
-						/>
-						<label htmlFor="">Презентация продукта</label>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUsingIntroduction(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Презентация продукта
+						</label>
 					</li>
 					<li>
-						<input
-							type="checkbox"
-							onChange={(e) => setUsingAbout(e.target.checked)}
-						/>
-						<label htmlFor="">О нас</label>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUsingAbout(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							О нас
+						</label>
 					</li>
 					<li>
-						<input
-							type="checkbox"
-							onChange={(e) => setUsingContact(e.target.checked)}
-						/>
-						<label htmlFor="">Контакты</label>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUsingContact(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Контакты
+						</label>
 					</li>
 					<li>
-						<input
-							type="checkbox"
-							onChange={(e) => setUsingFooter(e.target.checked)}
-						/>
-						<label htmlFor="">Подвал сайта</label>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUsingFooter(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Подвал сайта
+						</label>
 					</li>
 				</ul>
 

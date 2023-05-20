@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Lending } from './lending.entity';
+import { Portfolio } from './portfolio.entity';
 @Entity('users')
 export class User {
 	@PrimaryGeneratedColumn()
@@ -13,4 +14,7 @@ export class User {
 
 	@OneToMany(() => Lending, (lending) => lending.user)
 	lendings: Lending[];
+
+	@OneToMany(() => Portfolio, (portfolio) => portfolio.user)
+	portfolios: Portfolio[];
 }

@@ -1,7 +1,7 @@
 import { LendingDTO } from '@/api/dto/lending.dto';
 import React, { useState } from 'react';
 import styles from '../styles/Site.module.css';
-import { AiOutlineEdit, AiOutlineEye } from 'react-icons/ai';
+import { AiOutlineEdit, AiOutlineDownload } from 'react-icons/ai';
 import { BiTrash } from 'react-icons/bi';
 import { LendingAPI } from '@/api/lending.api';
 import Link from 'next/link';
@@ -21,14 +21,14 @@ const Site = ({ data }: Props) => {
 				<div className={styles.listItem}>
 					<label className={styles.label}>{data.headerName}</label>
 					<div className={styles.btns}>
+						<Link href={`/admin/site/${data.id}`} className={styles.btn}>
+							<span className={styles.icon}>
+								<AiOutlineDownload />
+							</span>
+						</Link>
 						<Link href={`/admin/site/edit/${data.id}`} className={styles.btn}>
 							<span className={styles.icon}>
 								<AiOutlineEdit />
-							</span>
-						</Link>
-						<Link href={`/admin/site/${data.id}`} className={styles.btn}>
-							<span className={styles.icon}>
-								<AiOutlineEye />
 							</span>
 						</Link>
 						<button className={styles.btn} onClick={deleteSite}>
