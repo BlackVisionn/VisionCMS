@@ -32,13 +32,12 @@ const Sites = () => {
 	return (
 		<Layout auth={auth}>
 			<h1 className={styles.h1}>Ваши сайты</h1>
-			<form className={styles.form}>
-				<ul className={styles.sitesList}>
-					{sites.map((site) => {
-						return <Site data={site} key={site.id} />;
-					})}
-				</ul>
-			</form>
+
+			<ul className={styles.sitesList}>
+				{sites.map((site) => {
+					return <Site data={site} key={site.id} />;
+				})}
+			</ul>
 		</Layout>
 	);
 };

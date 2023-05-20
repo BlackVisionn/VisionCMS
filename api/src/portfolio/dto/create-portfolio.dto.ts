@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreatePortfolioDto {
 	@IsOptional()
@@ -172,4 +172,7 @@ export class CreatePortfolioDto {
 	@IsOptional()
 	@IsString()
 	footerUrlGit: string;
+	@IsOptional()
+	@IsNumber()
+	userID: number;
 }
