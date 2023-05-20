@@ -37,9 +37,17 @@ const Sidebar = () => {
 				<ul className={styles.sidebarList}>
 					<li className={styles.sidebarItem}>
 						<Link
-							href="/admin/new-site"
+							href="/admin/new-site/templates"
 							className={`${
-								router.pathname == '/admin/new-site' ? `${styles.active}` : ''
+								(router.pathname == '/admin/new-site/templates'
+									? `${styles.active}`
+									: '') ||
+								(router.pathname == '/admin/new-site/portfolio/components'
+									? `${styles.active}`
+									: '') ||
+								(router.pathname == '/admin/new-site/lending/components'
+									? `${styles.active}`
+									: '')
 							} ${styles.sidebarLink}`}
 						>
 							<span className={styles.sidebarIcon}>
