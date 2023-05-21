@@ -137,9 +137,11 @@ export class Portfolio {
 	footerText: string;
 	@Column({ default: 'Your Template' })
 	footerUrlName: string;
+	@Column({ default: 'https://github.com/' })
+	footerUrl: string;
 	@Column({ default: 'https://vk.com/' })
 	footerUrlVk: string;
-	@Column({ default: 'https://web.telegram.org/' })
+	@Column({ default: 'https://t.me/' })
 	footerUrlTelegram: string;
 	@Column({ default: 'https://github.com/' })
 	footerUrlGit: string;
