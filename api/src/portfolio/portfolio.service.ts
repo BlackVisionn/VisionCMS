@@ -44,4 +44,18 @@ export class PortfolioService {
 			},
 		});
 	}
+
+	async getLastCreatedEntryByUser(userId: number) {
+		const entry = await this.repo.find({
+			where: {
+				userId,
+			},
+			order: { id: 'DESC' },
+			take: 1,
+		});
+		if (entry.length > 0) {
+			return entry[0].id;
+		}
+		return null;
+	}
 }

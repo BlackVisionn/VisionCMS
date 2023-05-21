@@ -1,19 +1,17 @@
 import { LendingDTO } from './dto/lending.dto';
 
 export class PortfolioAPI {
-	// public static async getAllForCurrentUser(
-	// 	userId: number,
-	// ): Promise<LendingDTO[]> {
-	// 	const response = await fetch(
-	// 		`http://localhost:5000/lending/sites/${userId}`,
-	// 		{
-	// 			method: 'GET',
-	// 		},
-	// 	);
-	// 	const data = await response.json();
+	public static async getLastCreatedPortfolio(userId: number) {
+		const response = await fetch(
+			`http://localhost:5000/portfolio/last-portfolio/${userId}`,
+			{
+				method: 'GET',
+			},
+		);
+		const data = await response.json();
 
-	// 	return data;
-	// }
+		return data;
+	}
 
 	public static async createPortfolioComponents(
 		useHeader: boolean,
@@ -100,7 +98,7 @@ export class PortfolioAPI {
 		footerUrlVk: string,
 		footerUrlTelegram: string,
 		footerUrlGit: string,
-		userID: number,
+		userId: number,
 	) {
 		await fetch('http://localhost:5000/portfolio/new', {
 			method: 'POST',
@@ -163,7 +161,7 @@ export class PortfolioAPI {
 				footerUrlVk,
 				footerUrlTelegram,
 				footerUrlGit,
-				userID,
+				userId,
 			}),
 		});
 	}

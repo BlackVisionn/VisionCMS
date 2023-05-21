@@ -7,7 +7,11 @@ import { PortfolioAPI } from '@/api/portfolio.api';
 
 const PortfolioComponents = () => {
 	const [auth, setAuth] = useState(false);
-	const [userID, setUserID] = useState(0);
+	const [userId, setUserID] = useState(0);
+	let view;
+	// const [isChoosingPage, setIsChoosingPage] = useState(true);
+	const [isComponentsPage, setIsComponentsPage] = useState(true);
+	const [isCreationPage, setIsCreationPage] = useState(false);
 
 	//Components using
 	const [useHeader, setUseHeader] = useState(false);
@@ -18,7 +22,6 @@ const PortfolioComponents = () => {
 	const [useLanguages, setUseLanguages] = useState(false);
 	const [useContact, setUseContact] = useState(false);
 	const [useFooter, setUseFooter] = useState(false);
-	const [portfolio, setPortfolioID] = useState(10);
 
 	//Components
 	const [headerTitle, setHeaderTitle] = useState<any>();
@@ -100,19 +103,19 @@ const PortfolioComponents = () => {
 		})();
 	});
 
+	const changeView = async () => {
+		if (isComponentsPage == true && isCreationPage == false) {
+			setIsComponentsPage(false);
+			setIsCreationPage(true);
+		} else if (isCreationPage == true && isComponentsPage == false) {
+			setIsCreationPage(false);
+			// setIsComponentsPage(true);
+			// router.push('portfolio/templates');
+		}
+	};
+
 	const createPortfolioUsingComponents = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		await PortfolioAPI.createPortfolioComponents(
-			useHeader,
-			useAbout,
-			useProjects,
-			useWork,
-			useEducation,
-			useLanguages,
-			useContact,
-			useFooter,
-			portfolio,
-		);
 		await PortfolioAPI.createPortfolio(
 			headerTitle,
 			headerDescription,
@@ -171,180 +174,202 @@ const PortfolioComponents = () => {
 			footerUrlVk,
 			footerUrlTelegram,
 			footerUrlGit,
-			userID,
+			userId,
 		);
+		const portfolio = await PortfolioAPI.getLastCreatedPortfolio(userId);		
+		await PortfolioAPI.createPortfolioComponents(
+			useHeader,
+			useAbout,
+			useProjects,
+			useWork,
+			useEducation,
+			useLanguages,
+			useContact,
+			useFooter,
+			portfolio,
+		);
+		changeView();
 	};
 
-	let view = (
-		<div>
-			<h1 className={styles.h1}>
-				Выберите компоненты которые будут использоваться на вашем сайте
-			</h1>
-			<ul className={styles.componentsList}>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseHeader(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						Заголовок сайта
-					</label>
-				</li>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseAbout(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						О Себе
-					</label>
-				</li>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseProjects(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						Проекты
-					</label>
-				</li>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseWork(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						Опыт работы
-					</label>
-				</li>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseEducation(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						Образование
-					</label>
-				</li>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseLanguages(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						Языки
-					</label>
-				</li>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseContact(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						Контакты
-					</label>
-				</li>
-				<li>
-					<label className={styles.checkbox}>
-						<input
-							type="checkbox"
-							onChange={(e) => setUseFooter(e.target.checked)}
-						/>
-						<span className={styles.checkmark}>
-							<svg viewBox="0 0 24 24" className={styles.icon}>
-								<path
-									fill="none"
-									stroke="#ffffff"
-									strokeWidth="3"
-									d="M3,12.5 L8,17.5 L21,4.5"
-								/>
-							</svg>
-						</span>
-						Подвал сайта
-					</label>
-				</li>
-			</ul>
+	if (isComponentsPage) {
+		view = (
+			<div>
+				<h1 className={styles.h1}>
+					Выберите компоненты которые будут использоваться на вашем сайте
+				</h1>
+				<ul className={styles.componentsList}>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseHeader(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Заголовок сайта
+						</label>
+					</li>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseAbout(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							О Себе
+						</label>
+					</li>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseProjects(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Проекты
+						</label>
+					</li>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseWork(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Опыт работы
+						</label>
+					</li>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseEducation(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Образование
+						</label>
+					</li>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseLanguages(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Языки
+						</label>
+					</li>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseContact(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Контакты
+						</label>
+					</li>
+					<li>
+						<label className={styles.checkbox}>
+							<input
+								type="checkbox"
+								onChange={(e) => setUseFooter(e.target.checked)}
+							/>
+							<span className={styles.checkmark}>
+								<svg viewBox="0 0 24 24" className={styles.icon}>
+									<path
+										fill="none"
+										stroke="#ffffff"
+										strokeWidth="3"
+										d="M3,12.5 L8,17.5 L21,4.5"
+									/>
+								</svg>
+							</span>
+							Подвал сайта
+						</label>
+					</li>
+				</ul>
 
-			<button
-				className={styles.btnAction}
-				onClick={createPortfolioUsingComponents}
-			>
-				Применить
-			</button>
-			{/* onClick={setComponents} */}
-		</div>
-	);
-
+				<button
+					className={styles.btnAction}
+					onClick={createPortfolioUsingComponents}
+				>
+					Применить
+				</button>
+			</div>
+		);
+	} else if (isCreationPage) {
+		view = (
+			<div>
+				<h1>CreationPage</h1>
+				<button onClick={changeView}>Сохранить</button>
+			</div>
+		);
+	} else if (!isComponentsPage && !isCreationPage) {
+		router.push('../templates');
+	}
 	return <Layout auth={auth}>{view}</Layout>;
 };
 

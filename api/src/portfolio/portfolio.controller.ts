@@ -34,6 +34,11 @@ export class PortfolioController {
 		return await this.portfolioService.remove(id);
 	}
 
+	@Get('last-portfolio/:userId')
+	async getLastUserPortfolio(@Param('userId') userId: number) {
+		return await this.portfolioService.getLastCreatedEntryByUser(userId);
+	}
+
 	@Get('/sites/:userId')
 	async user(@Param('userId') userId: number) {
 		return await this.portfolioService.findByUserId(userId);
