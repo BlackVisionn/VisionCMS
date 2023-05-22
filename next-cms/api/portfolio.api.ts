@@ -15,6 +15,20 @@ export class PortfolioAPI {
 		return data;
 	}
 
+	public static async getComponentsForPortfolioByPortfolioId(
+		portfolioId: number,
+	) {
+		const response = await fetch(
+			`http://localhost:5000/portfolio-components/${portfolioId}`,
+			{
+				method: 'GET',
+			},
+		);
+		const data = await response.json();
+
+		return data;
+	}
+
 	public static async delete(siteID: number) {
 		await fetch(`http://localhost:5000/portfolio/${siteID}`, {
 			method: 'DELETE',
@@ -42,7 +56,7 @@ export class PortfolioAPI {
 		useLanguages: boolean,
 		useContact: boolean,
 		useFooter: boolean,
-		portfolio: number,
+		portfolioId: number,
 	) {
 		await fetch('http://localhost:5000/portfolio-components/new', {
 			method: 'POST',
@@ -56,7 +70,7 @@ export class PortfolioAPI {
 				useLanguages,
 				useContact,
 				useFooter,
-				portfolio,
+				portfolioId,
 			}),
 		});
 	}

@@ -1,4 +1,4 @@
-import { IsBoolean, IsOptional } from 'class-validator';
+import { IsOptional, IsBoolean } from 'class-validator';
 
 export class CreatePortfolioComponentsDto {
 	@IsOptional()

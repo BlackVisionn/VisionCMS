@@ -30,7 +30,7 @@ const Sites = () => {
 				setUserId(user.id);
 			}
 			const lending = await LendingAPI.getAllForCurrentUser(userId);
-			const portfolio = await PortfolioAPI.getAllForCurrentUser(userId);			
+			const portfolio = await PortfolioAPI.getAllForCurrentUser(userId);
 			setLendings(lending);
 			setPortfolios(portfolio);
 		})();

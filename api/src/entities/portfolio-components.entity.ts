@@ -26,6 +26,8 @@ export class PortfolioComponents {
 	useContact: boolean;
 	@Column({ default: true })
 	useFooter: boolean;
+	@Column({ nullable: true })
+	portfolioId: number;
 
 	@OneToOne(() => Portfolio, (portfolio) => portfolio.portfolioComponents, {
 		onDelete: 'CASCADE',

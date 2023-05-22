@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { PortfolioComponentsService } from './portfolio-components.service';
 import { CreatePortfolioComponentsDto } from './dto/create-portfolio-components.dto';
-import { UpdatePortfolioComponentsDto } from './dto/update-portfolio-components.dto';
 
 @Controller('portfolio-components')
 export class PortfolioComponentsController {
@@ -25,5 +24,12 @@ export class PortfolioComponentsController {
 		);
 
 		return portfolioComponents;
+	}
+
+	@Get(':portfolioId')
+	async findComponentsForPortfolio(@Param('portfolioId') portfolioId: number) {
+		return await this.portfolioComponentsService.findComponentsByPortfolioId(
+			portfolioId,
+		);
 	}
 }

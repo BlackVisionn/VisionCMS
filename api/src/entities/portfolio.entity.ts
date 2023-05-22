@@ -149,7 +149,10 @@ export class Portfolio {
 	@Column({ default: null })
 	userId: number;
 
-	@OneToOne(() => PortfolioComponents)
+	@OneToOne(
+		() => PortfolioComponents,
+		(portfolioComponent) => portfolioComponent.portfolio,
+	)
 	portfolioComponents: PortfolioComponents;
 
 	@ManyToOne(() => User, (user) => user.portfolios, { eager: true })
