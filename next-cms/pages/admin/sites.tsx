@@ -2,16 +2,21 @@ import Layout from '@/components/Layout';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UserAPI } from '@/api/user.api';
+
+import styles from '../../styles/Site.module.css';
+import Lending from '@/components/Lending';
 import { LendingDTO } from '@/api/dto/lending.dto';
 import { LendingAPI } from '@/api/lending.api';
-import Site from '@/components/Site';
-import styles from '../../styles/Site.module.css';
+import { PortfolioDTO } from '@/api/dto/portfolio.dto';
+import { PortfolioAPI } from '@/api/portfolio.api';
+import Portfolio from '@/components/Portfolio';
 
 const Sites = () => {
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
 	const [userId, setUserId] = useState(0);
-	const [sites, setSites] = useState<LendingDTO[]>([]);
+	const [lendings, setLendings] = useState<LendingDTO[]>([]);
+	const [portfolios, setPortfolios] = useState<PortfolioDTO[]>([]);
 
 	useEffect(() => {
 		(async () => {
@@ -24,8 +29,10 @@ const Sites = () => {
 				setAuth(true);
 				setUserId(user.id);
 			}
-			const resp = await LendingAPI.getAllForCurrentUser(userId);
-			setSites(resp);
+			const lending = await LendingAPI.getAllForCurrentUser(userId);
+			const portfolio = await PortfolioAPI.getAllForCurrentUser(userId);			
+			setLendings(lending);
+			setPortfolios(portfolio);
 		})();
 	});
 
@@ -33,9 +40,12 @@ const Sites = () => {
 		<Layout auth={auth}>
 			<h1 className={styles.h1}>Ваши сайты</h1>
 
-			<ul className={styles.sitesList}>
-				{sites.map((site) => {
-					return <Site data={site} key={site.id} />;
+			<ul className={styles.siteList}>
+				{lendings.map((lend) => {
+					return <Lending data={lend} key={lend.id} />;
+				})}
+				{portfolios.map((portf) => {
+					return <Portfolio data={portf} key={portf.id} />;
 				})}
 			</ul>
 		</Layout>

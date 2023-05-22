@@ -5,7 +5,7 @@ import { UserAPI } from '@/api/user.api';
 import styles from '../../../../styles/CreateNewSite.module.css';
 import { LendingAPI } from '@/api/lending.api';
 
-const SiteEdit = () => {
+const LendingEdit = () => {
 	const [site, setSite] = useState<any>([]);
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
@@ -364,4 +364,4 @@ const SiteEdit = () => {
 	return <Layout auth={auth}>{view}</Layout>;
 };
 
-export default SiteEdit;
+export default LendingEdit;
