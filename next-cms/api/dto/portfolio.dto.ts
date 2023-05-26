@@ -3,6 +3,8 @@ export interface PortfolioDTO {
 
 	templateType: string;
 
+	templateName: string;
+
 	headerTitle: string;
 
 	headerDescription: string;

@@ -14,6 +14,7 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import simpleGit, { SimpleGit } from 'simple-git';
 import * as archiver from 'archiver';
+import { PortfolioComponents } from 'src/entities/portfolio-components.entity';
 
 @Controller('portfolio-components')
 export class PortfolioComponentsController {
@@ -46,10 +47,9 @@ export class PortfolioComponentsController {
 		@Res() res,
 		@Param('portfolioId') portfolioId: number,
 	) {
-		const portfolioData =
-			await this.portfolioComponentsService.findComponentsByPortfolioId(
-				portfolioId,
-			);
+		const portfolioData = await this.portfolioComponentsService.findPortfolio(
+			portfolioId,
+		);
 		const templateURL =
 			'https://github.com/BlackVisionn/portfolio-template.git';
 		const templateName = 'portfolio-template';
@@ -57,7 +57,7 @@ export class PortfolioComponentsController {
 		const pathForClone = path.join(pathToArchive, templateName);
 		try {
 			await this.cloneTemplate(pathForClone, templateURL);
-			// await this.modifyTemplate(pathForClone);
+			await this.modifyTemplate(pathForClone, portfolioData);
 			await this.createArchive(pathToArchive, portfolioId);
 			const createdArchivePath = path.join(
 				'./sites-templates',
@@ -100,5 +100,192 @@ export class PortfolioComponentsController {
 		await archive.finalize();
 	}
 
-	private async modifyTemplate(pathToTemplateFolder: string) {}
+	private async modifyTemplate(
+		pathToTemplateFolder: string,
+		portfolioData: PortfolioComponents,
+	) {
+		type Component = {
+			componentFilePath: string;
+			componentName: string;
+			componentImport: string;
+		};
+		const header: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Header.tsx',
+			),
+			componentName: '<Header />',
+			componentImport: 'import Header from "@/components/Header";',
+		};
+		const about: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/About.tsx',
+			),
+			componentName: '<About />',
+			componentImport: 'import About from "@/components/About";',
+		};
+
+		const projects: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Projects.tsx',
+			),
+			componentName: '<Projects />',
+			componentImport: 'import Projects from "@/components/Projects";',
+		};
+
+		const work: Component = {
+			componentFilePath: path.join(pathToTemplateFolder, 'components/Work.tsx'),
+			componentName: '<Work />',
+			componentImport: 'import Work from "@/components/Work";',
+		};
+
+		const education: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Education.tsx',
+			),
+			componentName: '<Education />',
+			componentImport: 'import Education from "@/components/Education";',
+		};
+
+		const languages: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Languages.tsx',
+			),
+			componentName: '<Languages />',
+			componentImport: 'import Languages from "@/components/Languages";',
+		};
+
+		const contact: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Contact.tsx',
+			),
+			componentName: '<Contact />',
+			componentImport: 'import Contact from "@/components/Contact";',
+		};
+
+		const footer: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Footer.tsx',
+			),
+			componentName: '<Footer />',
+			componentImport: 'import Footer from "@/components/Footer";',
+		};
+		const indexPath = path.join(pathToTemplateFolder, 'pages/index.tsx');
+
+		let fileContent;
+
+		// HEADER
+		if (portfolioData.useHeader) {
+			// fileContent = fse.readFileSync(headerPath, 'utf-8');
+			// fileContent = fileContent.replace('<About />', '');
+			// fs.writeFileSync(filePath, fileContent, 'utf-8');
+			// то меняем значения которые задал пользователь этому компоненту
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				header.componentName,
+				header.componentImport,
+				header.componentFilePath,
+			);
+		}
+		// ABOUT
+		if (portfolioData.useAbout) {
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				about.componentName,
+				about.componentImport,
+				about.componentFilePath,
+			);
+		}
+		// PROJECTS
+		if (portfolioData.useProjects) {
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				projects.componentName,
+				projects.componentImport,
+				projects.componentFilePath,
+			);
+		}
+
+		//WORK
+		if (portfolioData.useWork) {
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				work.componentName,
+				work.componentImport,
+				work.componentFilePath,
+			);
+		}
+
+		//EDUCATION
+		if (portfolioData.useEducation) {
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				education.componentName,
+				education.componentImport,
+				education.componentFilePath,
+			);
+		}
+
+		//LANGUAGES
+		if (portfolioData.useLanguages) {
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				languages.componentName,
+				languages.componentImport,
+				languages.componentFilePath,
+			);
+		}
+
+		//CONTACT
+		if (portfolioData.useContact) {
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				contact.componentName,
+				contact.componentImport,
+				contact.componentFilePath,
+			);
+		}
+
+		//FOOTER
+		if (portfolioData.useFooter) {
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				footer.componentName,
+				footer.componentImport,
+				footer.componentFilePath,
+			);
+		}
+	}
+	private async deleteComponentFromTemplate(
+		indexPath: string,
+		deletingComponent: string,
+		deletingComponentImport: string,
+		deletingComponentFile: string,
+	) {
+		let fileContent;
+		fse.unlinkSync(deletingComponentFile);
+		fileContent = fse.readFileSync(indexPath, 'utf-8');
+		fileContent = fileContent.replace(deletingComponent, '');
+		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+		fileContent = fileContent.replace(/^\s*[\r\n]/gm, '');
+		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+		fileContent = fileContent.replace(deletingComponentImport, '');
+		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+		fileContent = fileContent.replace(/^\s*[\r\n]/gm, '');
+		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+	}
 }

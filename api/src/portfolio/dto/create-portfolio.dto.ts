@@ -6,6 +6,9 @@ export class CreatePortfolioDto {
 	templateType: string;
 	@IsOptional()
 	@IsString()
+	templateName: string;
+	@IsOptional()
+	@IsString()
 	headerTitle: string;
 	@IsOptional()
 	@IsString()

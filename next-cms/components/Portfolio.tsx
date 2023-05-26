@@ -42,7 +42,7 @@ const Portfolio = ({ data }: Props) => {
 				<div className={styles.siteDetails}>
 					<div className={styles.siteInfo}>
 						<div className={styles.siteType}>{data.templateType}</div>
-						<div className={styles.siteName}>{data.headerTitle}</div>
+						<div className={styles.siteName}>{data.templateName}</div>
 					</div>
 					<div className={styles.buttons}>
 						<button onClick={downLoadPortfolioTemplate} className={styles.btn}>

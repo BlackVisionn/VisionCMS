@@ -202,6 +202,7 @@ export class PortfolioAPI {
 
 	public static async updatePortfolio(
 		siteID: number,
+		templateName: string,
 		headerTitle: string,
 		headerDescription: string,
 		headerUrlVk: string,
@@ -264,6 +265,7 @@ export class PortfolioAPI {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
+				templateName,
 				headerTitle,
 				headerDescription,
 				headerUrlVk,

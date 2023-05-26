@@ -25,4 +25,13 @@ export class PortfolioComponentsService {
 
 		return portfolioComponents;
 	}
+	async findPortfolio(portfolioId: number) {
+		const portfolioComponents = await this.repo
+			.createQueryBuilder('portfolioComponents')
+			.leftJoinAndSelect('portfolioComponents.portfolio', 'portfolio')
+			.where('portfolioComponents.portfolioId = :portfolioId', { portfolioId })
+			.getOne();
+
+		return portfolioComponents;
+	}
 }

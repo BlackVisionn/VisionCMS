@@ -34,6 +34,7 @@ const PortfolioComponents = () => {
 	const [useFooter, setUseFooter] = useState(false);
 
 	//Components
+	const [templateName, setTemplateName] = useState<any>();
 	const [headerTitle, setHeaderTitle] = useState<any>();
 	const [headerDescription, setHeaderDescription] = useState<any>();
 	const [headerUrlVk, setHeaderUrlVk] = useState<any>();
@@ -96,6 +97,19 @@ const PortfolioComponents = () => {
 	const [footerUrlVk, setFooterUrlVk] = useState<any>();
 	const [footerUrlTelegram, setFooterUrlTelegram] = useState<any>();
 	const [footerUrlGit, setFooterUrlGit] = useState<any>();
+	const templatNameInput = (
+		<div>
+			<h1 className={styles.h1}>Введите название своего шаблона.</h1>
+			<div className={styles.inputWrapper}>
+				<label className={styles.label}>Название шаблона.</label>
+				<input
+					type="text"
+					className={styles.input}
+					onChange={(e) => setTemplateName(e.target.value)}
+				/>
+			</div>
+		</div>
+	);
 
 	const router = useRouter();
 
@@ -807,6 +821,7 @@ const PortfolioComponents = () => {
 		const portfolio = await PortfolioAPI.getLastCreatedPortfolio(userId);
 		PortfolioAPI.updatePortfolio(
 			portfolio,
+			templateName,
 			headerTitle,
 			headerDescription,
 			headerUrlVk,
@@ -1117,7 +1132,8 @@ const PortfolioComponents = () => {
 		);
 	} else if (isCreationPage) {
 		view = (
-			<div className={styles.inputs}>
+			<div>
+				{templatNameInput}
 				{empty}
 				{header}
 				{about}

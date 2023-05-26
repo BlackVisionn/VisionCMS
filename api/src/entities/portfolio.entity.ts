@@ -15,6 +15,8 @@ export class Portfolio {
 
 	@Column({ default: 'Portfolio' })
 	templateType: string;
+	@Column({ default: 'portfolio-template' })
+	templateName: string;
 
 	//HEADER
 	@Column({ default: 'I am YOUR NAME' })
