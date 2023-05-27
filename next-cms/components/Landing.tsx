@@ -14,22 +14,41 @@ const Landing = ({ data }: Props) => {
 	const deleteLanding = async () => {
 		await LandingAPI.delete(data.id);
 	};
+	const downLoadLandingTemplate = async () => {
+		try {
+			const response = await fetch(
+				`http://localhost:5000/landing-components/download/${data.id}`,
+				{
+					method: 'GET',
+				},
+			);
+
+			const blob = await response.blob();
+			const downloadUrl = window.URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = downloadUrl;
+			link.setAttribute('download', `landing-template.zip`);
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		} catch (error) {
+			console.error('Failed to download project:', error);
+		}
+	};
 
 	return (
 		<div>
 			<li className={styles.siteItem}>
 				<div className={styles.siteDetails}>
 					<div className={styles.siteInfo}>
-						<div className={styles.siteType}>Landing</div>
-						<div className={styles.siteName}>{data.headerName}</div>
+						<div className={styles.siteType}>{data.templateType}</div>
+						<div className={styles.siteName}>{data.templateName}</div>
 					</div>
 					<div className={styles.buttons}>
-						<button>
-							<Link href={`/admin/sites/`} className={styles.btn}>
-								<span className={styles.icon}>
-									<AiOutlineDownload />
-								</span>
-							</Link>
+						<button onClick={downLoadLandingTemplate} className={styles.btn}>
+							<span className={styles.icon}>
+								<AiOutlineDownload />
+							</span>
 						</button>
 						<button>
 							<Link

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Portfolio = ({ data }: Props) => {
-	const deleteLanding = async () => {
+	const deletePortfolio = async () => {
 		await PortfolioAPI.delete(data.id);
 	};
 
@@ -61,7 +61,7 @@ const Portfolio = ({ data }: Props) => {
 								</span>
 							</Link>
 						</button>
-						<button className={styles.btn} onClick={deleteLanding}>
+						<button className={styles.btn} onClick={deletePortfolio}>
 							<span className={styles.icon}>
 								<BiTrash />
 							</span>
