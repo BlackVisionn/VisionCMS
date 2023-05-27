@@ -3,7 +3,7 @@ import Layout from '@/components/Layout';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-const LendingComponents = () => {
+const LandingComponents = () => {
 	const [auth, setAuth] = useState(false);
 	const [userId, setUserId] = useState(0);
 	const router = useRouter();
@@ -21,7 +21,7 @@ const LendingComponents = () => {
 			}
 		})();
 	});
-	return <Layout auth={auth}>Lending Components</Layout>;
+	return <Layout auth={auth}>Landing Components</Layout>;
 };
 
-export default LendingComponents;
+export default LandingComponents;

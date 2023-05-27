@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import { UserAPI } from '@/api/user.api';
 
 import styles from '../../styles/Site.module.css';
-import Lending from '@/components/Lending';
-import { LendingDTO } from '@/api/dto/lending.dto';
-import { LendingAPI } from '@/api/lending.api';
+import Landing from '@/components/Landing';
+import { LandingDTO } from '@/api/dto/landing.dto';
+import { LandingAPI } from '@/api/landing.api';
 import { PortfolioDTO } from '@/api/dto/portfolio.dto';
 import { PortfolioAPI } from '@/api/portfolio.api';
 import Portfolio from '@/components/Portfolio';
@@ -15,7 +15,7 @@ const Sites = () => {
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
 	const [userId, setUserId] = useState(0);
-	const [lendings, setLendings] = useState<LendingDTO[]>([]);
+	const [landings, setLandings] = useState<LandingDTO[]>([]);
 	const [portfolios, setPortfolios] = useState<PortfolioDTO[]>([]);
 
 	useEffect(() => {
@@ -29,9 +29,9 @@ const Sites = () => {
 				setAuth(true);
 				setUserId(user.id);
 			}
-			const lending = await LendingAPI.getAllForCurrentUser(userId);
+			const landing = await LandingAPI.getAllForCurrentUser(userId);
 			const portfolio = await PortfolioAPI.getAllForCurrentUser(userId);
-			setLendings(lending);
+			setLandings(landing);
 			setPortfolios(portfolio);
 		})();
 	});
@@ -41,8 +41,8 @@ const Sites = () => {
 			<h1 className={styles.h1}>Ваши сайты</h1>
 
 			<ul className={styles.siteList}>
-				{lendings.map((lend) => {
-					return <Lending data={lend} key={lend.id} />;
+				{landings.map((lend) => {
+					return <Landing data={lend} key={lend.id} />;
 				})}
 				{portfolios.map((portf) => {
 					return <Portfolio data={portf} key={portf.id} />;

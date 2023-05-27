@@ -1,4 +1,4 @@
-export interface LendingDTO {
+export interface LandingDTO {
 	id: number;
 
 	headerName: string;

@@ -3,9 +3,9 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UserAPI } from '@/api/user.api';
 import styles from '../../../../styles/CreateNewSite.module.css';
-import { LendingAPI } from '@/api/lending.api';
+import { LandingAPI } from '@/api/landing.api';
 
-const LendingEdit = () => {
+const LandingEdit = () => {
 	const [site, setSite] = useState<any>([]);
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
@@ -56,7 +56,7 @@ const LendingEdit = () => {
 				setAuth(true);
 				setUserId(user.id);
 			}
-			const resp = await LendingAPI.getAllForCurrentUser(userId);
+			const resp = await LandingAPI.getAllForCurrentUser(userId);
 			for (let i = 0; i < resp.length; i++) {
 				if (resp[i].id == Number(siteID)) {
 					setSite(resp[i]);
@@ -73,7 +73,7 @@ const LendingEdit = () => {
 
 	const updateSite = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		await LendingAPI.updateLending(
+		await LandingAPI.updateLanding(
 			siteID,
 			headerName,
 			headerDescription,
@@ -364,4 +364,4 @@ const LendingEdit = () => {
 	return <Layout auth={auth}>{view}</Layout>;
 };
 
-export default LendingEdit;
+export default LandingEdit;

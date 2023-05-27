@@ -45,7 +45,7 @@ const Sidebar = () => {
 								(router.pathname == '/admin/new-site/portfolio/components'
 									? `${styles.active}`
 									: '') ||
-								(router.pathname == '/admin/new-site/lending/components'
+								(router.pathname == '/admin/new-site/landing/components'
 									? `${styles.active}`
 									: '')
 							} ${styles.sidebarLink}`}

@@ -26,8 +26,8 @@ const NewSiteTemplate = () => {
 	const changeToPortfolioComponentsPage = async () => {
 		router.push('portfolio/components');
 	};
-	const changeToLendingComponentsPage = async () => {
-		router.push('lending/components');
+	const changeToLandingComponentsPage = async () => {
+		router.push('landing/components');
 	};
 
 	return (
@@ -40,7 +40,7 @@ const NewSiteTemplate = () => {
 				>
 					Сайт Портфолио
 				</button>
-				<button className={styles.btn} onClick={changeToLendingComponentsPage}>
+				<button className={styles.btn} onClick={changeToLandingComponentsPage}>
 					Сайт Лендинг
 				</button>
 			</div>

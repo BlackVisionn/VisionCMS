@@ -3,13 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { Lending } from './entities/lending.entity';
+import { Landing } from './entities/landing.entity';
 import { AuthModule } from './auth/auth.module';
-import { LendingModule } from './lending/lending.module';
+import { LandingModule } from './landing/landing.module';
 import { Portfolio } from './entities/portfolio.entity';
 import { PortfolioComponents } from './entities/portfolio-components.entity';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { PortfolioComponentsModule } from './portfolio-components/portfolio-components.module';
+import { LandingComponents } from './entities/landing-components.entity';
+import { LandingComponentsModule } from './landing-components/landing-components.module';
 
 @Module({
 	imports: [
@@ -20,11 +22,12 @@ import { PortfolioComponentsModule } from './portfolio-components/portfolio-comp
 			username: 'postgres',
 			password: 'admin',
 			database: 'vision-cms',
-			entities: [User, Lending, Portfolio, PortfolioComponents],
+			entities: [User, Landing, LandingComponents, Portfolio, PortfolioComponents],
 			synchronize: true,
 		}),
 		AuthModule,
-		LendingModule,
+		LandingModule,
+		LandingComponentsModule,
 		PortfolioModule,
 		PortfolioComponentsModule,
 	],

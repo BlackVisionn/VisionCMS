@@ -5,7 +5,7 @@ import {
 	OneToMany,
 	OneToOne,
 } from 'typeorm';
-import { Lending } from './lending.entity';
+import { Landing } from './landing.entity';
 import { Portfolio } from './portfolio.entity';
 @Entity('users')
 export class User {
@@ -18,8 +18,8 @@ export class User {
 	@Column()
 	password: string;
 
-	@OneToOne(() => Lending, (lending) => lending.user)
-	lendings: Lending[];
+	@OneToOne(() => Landing, (landing) => landing.user)
+	landings: Landing[];
 
 	@OneToMany(() => Portfolio, (portfolio) => portfolio.user)
 	portfolios: Portfolio[];
