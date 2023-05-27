@@ -1,43 +1,101 @@
 export interface LandingDTO {
 	id: number;
 
+	templateType: string;
+
+	templateName: string;
+
 	headerName: string;
 
 	headerDescription: string;
 
-	mainImg: string;
+	featuresNavItemName: string;
 
-	navIntroduction: string;
+	aboutNavItemName: string;
 
-	introductionTitle: string;
+	servicesNavItemName: string;
 
-	introductionDescription: string;
+	portfolioNavItemName: string;
 
-	navAbout: string;
+	teamNavItemName: string;
 
-	aboutTitle: string;
+	contactNavItemName: string;
+
+	buttonName: string;
+
+	featuresHeader: string;
+
+	firstFeaturesItemList: string;
+
+	secondFeaturesItemList: string;
+
+	thirdFeaturesItemList: string;
+
+	aboutHeader: string;
 
 	aboutDescription: string;
 
-	navContact: string;
+	servicesHeader: string;
 
-	contactTitle: string;
+	firstServicesItemList: string;
+
+	secondServicesItemList: string;
+
+	thirdServicesItemList: string;
+
+	portfolioHeader: string;
+
+	portfolioDescription: string;
+
+	firstPortoflioItemListProjectDescription: string;
+
+	firstPortoflioItemListProjectName: string;
+
+	firstPortoflioItemListProjectUrl: string;
+
+	secondPortoflioItemListProjectDescription: string;
+
+	secondPortoflioItemListProjectName: string;
+
+	secondPortoflioItemListProjectUrl: string;
+
+	thirdPortoflioItemListProjectDescription: string;
+
+	thirdPortoflioItemListProjectName: string;
+
+	thirdPortoflioItemListProjectUrl: string;
+
+	teamHeader: string;
+
+	teamDescription: string;
+
+	firstTeamItemListEmployeeName: string;
+
+	firstTeamItemListEmployeePosition: string;
+
+	secondTeamItemListEmployeeName: string;
+
+	secondTeamItemListEmployeePosition: string;
+
+	thirdTeamItemListEmployeeName: string;
+
+	thirdTeamItemListEmployeePosition: string;
+
+	contactHeader: string;
 
 	contactDescription: string;
 
-	footerCompany: string;
+	firstContactItemListName: string;
 
-	useHeader: boolean;
+	firstContactItemListInfo: string;
 
-	useMainImg: boolean;
+	secondContactItemListName: string;
 
-	useNavIntroduction: boolean;
+	secondContactItemListInfo: string;
 
-	useNavAbout: boolean;
+	thirdContactItemListName: string;
 
-	useNavContact: boolean;
+	thirdContactItemListInfo: string;
 
-	useFooter: boolean;
-
-	userId: number;
+	footerDescription: string;
 }
