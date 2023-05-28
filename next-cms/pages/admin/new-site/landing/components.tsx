@@ -11,15 +11,7 @@ const LandingComponents = () => {
 
 	let view;
 	const [isComponentsPage, setIsComponentsPage] = useState(true);
-	const [isCreationPage, setIsCreationPage] = useState(false);
-
-	const [navFeatures, setNavFeatures] = useState<any>();
-	const [navAbout, setNavAbout] = useState<any>();
-	const [navServices, setNavServices] = useState<any>();
-	const [navPortfolio, setNavPortfolio] = useState<any>();
-	const [navTeam, setNavTeam] = useState<any>();
-	const [navContact, setNavContact] = useState<any>();
-	const [btnContact, setBtnContact] = useState<any>();
+	const [isCreationPage, setIsCreationPage] = useState(false);	
 
 	const [empty, setEmptyContent] = useState<any>();
 	const [header, setHeaderContent] = useState<any>();
@@ -202,133 +194,6 @@ const LandingComponents = () => {
 		}
 
 		if (useHeader) {
-			let navInput;
-			let btnInput;
-			if (useFeatures) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название первого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							className={styles.input}
-							onChange={(e) => setFeaturesNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavFeatures(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavFeatures(navInput);
-			}
-			if (useAbout) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название второго раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							className={styles.input}
-							onChange={(e) => setAboutNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavAbout(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavAbout(navInput);
-			}
-			if (useServices) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название третьего раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							className={styles.input}
-							onChange={(e) => setServicesNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavServices(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavServices(navInput);
-			}
-			if (usePortfolio) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название четвертого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							className={styles.input}
-							onChange={(e) => setPortfolioNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavPortfolio(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavPortfolio(navInput);
-			}
-			if (useTeam) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название пятого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							className={styles.input}
-							onChange={(e) => setTeamNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavTeam(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavTeam(navInput);
-			}
-			if (useContact) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название шестого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							className={styles.input}
-							onChange={(e) => setContactNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				btnInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название кнопки, которая ведет на последний раздел
-							(Например: "Свяжитесь с нами").
-						</label>
-						<input
-							type="text"
-							className={styles.input}
-							onChange={(e) => setButtonName(e.target.value)}
-						/>
-					</div>
-				);
-				setBtnContact(btnInput);
-				setNavContact(navInput);
-			} else {
-				btnInput = <div></div>;
-				navInput = <div></div>;
-				setBtnContact(btnInput);
-				setNavContact(navInput);
-			}
-
 			content = (
 				<div>
 					<h1 className={styles.h1}>
@@ -351,13 +216,108 @@ const LandingComponents = () => {
 							onChange={(e) => setHeaderDescription(e.target.value)}
 						/>
 					</div>
-					{btnContact}
-					{navFeatures}
-					{navAbout}
-					{navServices}
-					{navPortfolio}
-					{navTeam}
-					{navContact}
+					{useFeatures ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название первого раздела навигационной панели
+								(Особенности).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setFeaturesNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+
+					{useAbout ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название второго раздела навигационной панели (О нас).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setAboutNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+
+					{useServices ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название третьего раздела навигационной панели (Услуги).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setServicesNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+					{usePortfolio ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название четвертого раздела навигационной панели
+								(Портфолио).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setPortfolioNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+					{useTeam ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название пятого раздела навигационной панели (Команда).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setTeamNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+					{useContact ? (
+						<div>
+							<div className={styles.inputWrapper}>
+								<label className={styles.label}>
+									Введите название шестого раздела навигационной панели
+									(Контакты).
+								</label>
+								<input
+									type="text"
+									className={styles.input}
+									onChange={(e) => setContactNavItemName(e.target.value)}
+								/>
+							</div>
+							<div className={styles.inputWrapper}>
+								<label className={styles.label}>
+									Введите название кнопки, которая ведет на последний раздел
+									(Например: "Свяжитесь с нами").
+								</label>
+								<input
+									type="text"
+									className={styles.input}
+									onChange={(e) => setButtonName(e.target.value)}
+								/>
+							</div>
+						</div>
+					) : (
+						<div></div>
+					)}
 				</div>
 			);
 			setHeaderContent(content);

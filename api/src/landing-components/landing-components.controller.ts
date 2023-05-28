@@ -128,21 +128,355 @@ export class LandingComponentsController {
 			componentName: '<Header />',
 			componentImport: 'import Header from "@/components/Header";',
 		};
+		const features: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Features.tsx',
+			),
+			componentName: '<Features />',
+			componentImport: 'import Features from "@/components/Features";',
+		};
+		const about: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/About.tsx',
+			),
+			componentName: '<About />',
+			componentImport: 'import About from "@/components/About";',
+		};
+		const services: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Services.tsx',
+			),
+			componentName: '<Services />',
+			componentImport: 'import Services from "@/components/Services";',
+		};
+		const portfolio: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Portfolio.tsx',
+			),
+			componentName: '<Portfolio />',
+			componentImport: 'import Portfolio from "@/components/Portfolio";',
+		};
+		const team: Component = {
+			componentFilePath: path.join(pathToTemplateFolder, 'components/Team.tsx'),
+			componentName: '<Team />',
+			componentImport: 'import Team from "@/components/Team";',
+		};
+		const contact: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Contact.tsx',
+			),
+			componentName: '<Contact />',
+			componentImport: 'import Contact from "@/components/Contact";',
+		};
+		const footer: Component = {
+			componentFilePath: path.join(
+				pathToTemplateFolder,
+				'components/Footer.tsx',
+			),
+			componentName: '<Footer />',
+			componentImport: 'import Footer from "@/components/Footer";',
+		};
 
 		const indexPath = path.join(pathToTemplateFolder, 'pages/index.tsx');
 
 		// HEADER
 		if (landingData.useHeader) {
-			// fileContent = fse.readFileSync(headerPath, 'utf-8');
-			// fileContent = fileContent.replace('<About />', '');
-			// fs.writeFileSync(filePath, fileContent, 'utf-8');
-			// то меняем значения которые задал пользователь этому компоненту
+			await this.changeComponentInTemplate(
+				header.componentFilePath,
+				'headerName',
+				landingData.landing.headerName,
+			);
+			await this.changeComponentInTemplate(
+				header.componentFilePath,
+				'headerDescription',
+				landingData.landing.headerDescription,
+			);
+			if (landingData.useFeatures) {
+				await this.changeComponentInTemplate(
+					header.componentFilePath,
+					'featuresNavItemName',
+					landingData.landing.featuresNavItemName,
+				);
+			} else {
+				await this.deleteCodeFromTemplate(
+					header.componentFilePath,
+					'<li><a href="#features">featuresNavItemName</a></li>',
+				);
+			}
+			if (landingData.useAbout) {
+				await this.changeComponentInTemplate(
+					header.componentFilePath,
+					'aboutNavItemName',
+					landingData.landing.aboutNavItemName,
+				);
+			} else {
+				await this.deleteCodeFromTemplate(
+					header.componentFilePath,
+					'<li><a href="#about">aboutNavItemName</a></li>',
+				);
+			}
+			if (landingData.useServices) {
+				await this.changeComponentInTemplate(
+					header.componentFilePath,
+					'servicesNavItemName',
+					landingData.landing.servicesNavItemName,
+				);
+			} else {
+				await this.deleteCodeFromTemplate(
+					header.componentFilePath,
+					'<li><a href="#services">servicesNavItemName</a></li>',
+				);
+			}
+			if (landingData.usePortfolio) {
+				await this.changeComponentInTemplate(
+					header.componentFilePath,
+					'portfolioNavItemName',
+					landingData.landing.portfolioNavItemName,
+				);
+			} else {
+				await this.deleteCodeFromTemplate(
+					header.componentFilePath,
+					'<li><a href="#portfolio">portfolioNavItemName</a></li>',
+				);
+			}
+			if (landingData.useTeam) {
+				await this.changeComponentInTemplate(
+					header.componentFilePath,
+					'teamNavItemName',
+					landingData.landing.teamNavItemName,
+				);
+			} else {
+				await this.deleteCodeFromTemplate(
+					header.componentFilePath,
+					'<li><a href="#team">teamNavItemName</a></li>',
+				);
+			}
+			if (landingData.useContact) {
+				await this.changeComponentInTemplate(
+					header.componentFilePath,
+					'contactNavItemName',
+					landingData.landing.contactNavItemName,
+				);
+				await this.changeComponentInTemplate(
+					header.componentFilePath,
+					'buttonName',
+					landingData.landing.buttonName,
+				);
+			} else {
+				await this.deleteCodeFromTemplate(
+					header.componentFilePath,
+					'<li><a href="#contact">contactNavItemName</a></li>',
+				);
+				await this.deleteCodeFromTemplate(
+					header.componentFilePath,
+					'<a href="#contact" className="btn interactive-button">buttonName</a>',
+				);
+			}
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
 				header.componentName,
 				header.componentImport,
 				header.componentFilePath,
+			);
+		}
+		// FEATURES
+		if (landingData.useFeatures) {
+			await this.changeComponentInTemplate(
+				features.componentFilePath,
+				'featuresHeader',
+				landingData.landing.featuresHeader,
+			);
+			await this.changeComponentInTemplate(
+				features.componentFilePath,
+				'firstFeaturesItemList',
+				landingData.landing.firstFeaturesItemList,
+			);
+			await this.changeComponentInTemplate(
+				features.componentFilePath,
+				'secondFeaturesItemList',
+				landingData.landing.secondFeaturesItemList,
+			);
+			await this.changeComponentInTemplate(
+				features.componentFilePath,
+				'thirdFeaturesItemList',
+				landingData.landing.thirdFeaturesItemList,
+			);
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				features.componentName,
+				features.componentImport,
+				features.componentFilePath,
+			);
+		}
+		// ABOUT
+		if (landingData.useAbout) {
+			await this.changeComponentInTemplate(
+				about.componentFilePath,
+				'aboutHeader',
+				landingData.landing.aboutHeader,
+			);
+			await this.changeComponentInTemplate(
+				about.componentFilePath,
+				'aboutDescription',
+				landingData.landing.aboutDescription,
+			);
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				about.componentName,
+				about.componentImport,
+				about.componentFilePath,
+			);
+		}
+		// SERVICES
+		if (landingData.useServices) {
+			await this.changeComponentInTemplate(
+				services.componentFilePath,
+				'servicesHeader',
+				landingData.landing.servicesHeader,
+			);
+			await this.changeComponentInTemplate(
+				services.componentFilePath,
+				'firstServicesItemList',
+				landingData.landing.firstServicesItemList,
+			);
+			await this.changeComponentInTemplate(
+				services.componentFilePath,
+				'secondServicesItemList',
+				landingData.landing.secondServicesItemList,
+			);
+			await this.changeComponentInTemplate(
+				services.componentFilePath,
+				'thirdServicesItemList',
+				landingData.landing.thirdServicesItemList,
+			);
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				services.componentName,
+				services.componentImport,
+				services.componentFilePath,
+			);
+		}
+
+		// PORTFOLIO
+		if (landingData.usePortfolio) {
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'portfolioHeader',
+				landingData.landing.portfolioHeader,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'portfolioDescription',
+				landingData.landing.portfolioDescription,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'firstPortoflioItemListProjectDescription',
+				landingData.landing.firstPortoflioItemListProjectDescription,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'firstPortoflioItemListProjectUrl',
+				landingData.landing.firstPortoflioItemListProjectUrl,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'firstPortoflioItemListProjectName',
+				landingData.landing.firstPortoflioItemListProjectName,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'secondPortoflioItemListProjectDescription',
+				landingData.landing.secondPortoflioItemListProjectDescription,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'secondPortoflioItemListProjectUrl',
+				landingData.landing.secondPortoflioItemListProjectUrl,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'secondPortoflioItemListProjectName',
+				landingData.landing.secondPortoflioItemListProjectName,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'thirdPortoflioItemListProjectDescription',
+				landingData.landing.thirdPortoflioItemListProjectDescription,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'thirdPortoflioItemListProjectUrl',
+				landingData.landing.thirdPortoflioItemListProjectUrl,
+			);
+			await this.changeComponentInTemplate(
+				portfolio.componentFilePath,
+				'thirdPortoflioItemListProjectName',
+				landingData.landing.thirdPortoflioItemListProjectName,
+			);
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				portfolio.componentName,
+				portfolio.componentImport,
+				portfolio.componentFilePath,
+			);
+		}
+
+		// TEAM
+		if (landingData.useTeam) {
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'headerName',
+				landingData.landing.headerName,
+			);
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				team.componentName,
+				team.componentImport,
+				team.componentFilePath,
+			);
+		}
+
+		// CONTACT
+		if (landingData.useContact) {
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'headerName',
+				landingData.landing.headerName,
+			);
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				contact.componentName,
+				contact.componentImport,
+				contact.componentFilePath,
+			);
+		}
+
+		// FOOTER
+		if (landingData.useFooter) {
+			await this.changeComponentInTemplate(
+				footer.componentFilePath,
+				'headerName',
+				landingData.landing.headerName,
+			);
+		} else {
+			await this.deleteComponentFromTemplate(
+				indexPath,
+				footer.componentName,
+				footer.componentImport,
+				footer.componentFilePath,
 			);
 		}
 	}
@@ -163,5 +497,26 @@ export class LandingComponentsController {
 		fse.writeFileSync(indexPath, fileContent, 'utf-8');
 		fileContent = fileContent.replace(/^\s*[\r\n]/gm, '');
 		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+	}
+	private async deleteCodeFromTemplate(
+		indexPath: string,
+		deletingCode: string,
+	) {
+		let fileContent;
+		fileContent = fse.readFileSync(indexPath, 'utf-8');
+		fileContent = fileContent.replace(deletingCode, '');
+		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+		fileContent = fileContent.replace(/^\s*[\r\n]/gm, '');
+		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+	}
+	private async changeComponentInTemplate(
+		filePath: string,
+		oldElement: string,
+		newElement: string,
+	) {
+		let fileContent;
+		fileContent = fse.readFileSync(filePath, 'utf-8');
+		fileContent = fileContent.replace(oldElement, newElement);
+		fse.writeFileSync(filePath, fileContent, 'utf-8');
 	}
 }

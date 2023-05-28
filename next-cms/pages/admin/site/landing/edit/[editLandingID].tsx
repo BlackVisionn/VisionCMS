@@ -122,14 +122,6 @@ const LandingEdit = () => {
 	const [isComponentsPage, setIsComponentsPage] = useState(false);
 	const [isUpdatingPage, setIsUpdatingPage] = useState(false);
 
-	const [navFeatures, setNavFeatures] = useState<any>();
-	const [navAbout, setNavAbout] = useState<any>();
-	const [navServices, setNavServices] = useState<any>();
-	const [navPortfolio, setNavPortfolio] = useState<any>();
-	const [navTeam, setNavTeam] = useState<any>();
-	const [navContact, setNavContact] = useState<any>();
-	const [btnContact, setBtnContact] = useState<any>();
-
 	const [empty, setEmptyContent] = useState<any>();
 	const [header, setHeaderContent] = useState<any>();
 	const [features, setFeaturesContent] = useState<any>();
@@ -211,140 +203,6 @@ const LandingEdit = () => {
 		}
 
 		if (useHeader) {
-			let navInput;
-			let btnInput;
-			if (useFeatures) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название первого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							placeholder={featuresNavItemName}
-							className={styles.input}
-							onChange={(e) => setFeaturesNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavFeatures(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavFeatures(navInput);
-			}
-			if (useAbout) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название второго раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							placeholder={aboutNavItemName}
-							className={styles.input}
-							onChange={(e) => setAboutNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavAbout(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavAbout(navInput);
-			}
-			if (useServices) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название третьего раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							placeholder={servicesNavItemName}
-							className={styles.input}
-							onChange={(e) => setServicesNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavServices(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavServices(navInput);
-			}
-			if (usePortfolio) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название четвертого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							placeholder={portfolioNavItemName}
-							className={styles.input}
-							onChange={(e) => setPortfolioNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavPortfolio(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavPortfolio(navInput);
-			}
-			if (useTeam) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название пятого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							placeholder={teamNavItemName}
-							className={styles.input}
-							onChange={(e) => setTeamNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				setNavTeam(navInput);
-			} else {
-				navInput = <div></div>;
-				setNavTeam(navInput);
-			}
-			if (useContact) {
-				navInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название шестого раздела навигационной панели.
-						</label>
-						<input
-							type="text"
-							placeholder={contactNavItemName}
-							className={styles.input}
-							onChange={(e) => setContactNavItemName(e.target.value)}
-						/>
-					</div>
-				);
-				btnInput = (
-					<div className={styles.inputWrapper}>
-						<label className={styles.label}>
-							Введите название кнопки, которая ведет на последний раздел
-							(Например: "Свяжитесь с нами").
-						</label>
-						<input
-							type="text"
-							placeholder={buttonName}
-							className={styles.input}
-							onChange={(e) => setButtonName(e.target.value)}
-						/>
-					</div>
-				);
-				setBtnContact(btnInput);
-				setNavContact(navInput);
-			} else {
-				btnInput = <div></div>;
-				navInput = <div></div>;
-				setBtnContact(btnInput);
-				setNavContact(navInput);
-			}
-
 			content = (
 				<div>
 					<h1 className={styles.h1}>
@@ -355,7 +213,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок сайта.</label>
 						<input
 							type="text"
-							placeholder={headerName}
 							className={styles.input}
 							onChange={(e) => setHeaderName(e.target.value)}
 						/>
@@ -364,18 +221,112 @@ const LandingEdit = () => {
 						<label className={styles.label}>Краткое описание заголовка.</label>
 						<input
 							type="text"
-							placeholder={headerDescription}
 							className={styles.input}
 							onChange={(e) => setHeaderDescription(e.target.value)}
 						/>
 					</div>
-					{btnContact}
-					{navFeatures}
-					{navAbout}
-					{navServices}
-					{navPortfolio}
-					{navTeam}
-					{navContact}
+					{useFeatures ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название первого раздела навигационной панели
+								(Особенности).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setFeaturesNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+
+					{useAbout ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название второго раздела навигационной панели (О нас).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setAboutNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+
+					{useServices ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название третьего раздела навигационной панели (Услуги).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setServicesNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+					{usePortfolio ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название четвертого раздела навигационной панели
+								(Портфолио).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setPortfolioNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+					{useTeam ? (
+						<div className={styles.inputWrapper}>
+							<label className={styles.label}>
+								Введите название пятого раздела навигационной панели (Команда).
+							</label>
+							<input
+								type="text"
+								className={styles.input}
+								onChange={(e) => setTeamNavItemName(e.target.value)}
+							/>
+						</div>
+					) : (
+						<div></div>
+					)}
+					{useContact ? (
+						<div>
+							<div className={styles.inputWrapper}>
+								<label className={styles.label}>
+									Введите название шестого раздела навигационной панели
+									(Контакты).
+								</label>
+								<input
+									type="text"
+									className={styles.input}
+									onChange={(e) => setContactNavItemName(e.target.value)}
+								/>
+							</div>
+							<div className={styles.inputWrapper}>
+								<label className={styles.label}>
+									Введите название кнопки, которая ведет на последний раздел
+									(Например: "Свяжитесь с нами").
+								</label>
+								<input
+									type="text"
+									className={styles.input}
+									onChange={(e) => setButtonName(e.target.value)}
+								/>
+							</div>
+						</div>
+					) : (
+						<div></div>
+					)}
 				</div>
 			);
 			setHeaderContent(content);
@@ -394,7 +345,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={featuresHeader}
 							className={styles.input}
 							onChange={(e) => setFeaturesHeader(e.target.value)}
 						/>
@@ -403,7 +353,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Введите первую особенность.</label>
 						<input
 							type="text"
-							placeholder={firstFeaturesItemList}
 							className={styles.input}
 							onChange={(e) => setFirstFeaturesItemList(e.target.value)}
 						/>
@@ -412,7 +361,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Введите вторую особенность.</label>
 						<input
 							type="text"
-							placeholder={secondFeaturesItemList}
 							className={styles.input}
 							onChange={(e) => setSecondFeaturesItemList(e.target.value)}
 						/>
@@ -421,7 +369,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Введите третью особенность.</label>
 						<input
 							type="text"
-							placeholder={thirdFeaturesItemList}
 							className={styles.input}
 							onChange={(e) => setThirdFeaturesItemList(e.target.value)}
 						/>
@@ -441,7 +388,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок раздела "О нас".</label>
 						<input
 							type="text"
-							placeholder={aboutHeader}
 							className={styles.input}
 							onChange={(e) => setAboutHeader(e.target.value)}
 						/>
@@ -452,7 +398,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={aboutDescription}
 							className={styles.input}
 							onChange={(e) => setAboutDescription(e.target.value)}
 						/>
@@ -472,7 +417,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок раздела "Услуги".</label>
 						<input
 							type="text"
-							placeholder={servicesHeader}
 							className={styles.input}
 							onChange={(e) => setServicesHeader(e.target.value)}
 						/>
@@ -481,7 +425,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Первая услуга.</label>
 						<input
 							type="text"
-							placeholder={firstServicesItemList}
 							className={styles.input}
 							onChange={(e) => setFirstServicesItemList(e.target.value)}
 						/>
@@ -490,7 +433,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Вторая услуга.</label>
 						<input
 							type="text"
-							placeholder={secondServicesItemList}
 							className={styles.input}
 							onChange={(e) => setSecondServicesItemList(e.target.value)}
 						/>
@@ -499,7 +441,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Третья услуга.</label>
 						<input
 							type="text"
-							placeholder={thirdServicesItemList}
 							className={styles.input}
 							onChange={(e) => setThirdServicesItemList(e.target.value)}
 						/>
@@ -521,7 +462,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={portfolioHeader}
 							className={styles.input}
 							onChange={(e) => setPortfolioHeader(e.target.value)}
 						/>
@@ -532,7 +472,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={portfolioDescription}
 							className={styles.input}
 							onChange={(e) => setPortfolioDescription(e.target.value)}
 						/>
@@ -543,7 +482,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={firstPortoflioItemListProjectDescription}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstPortoflioItemListProjectDescription(e.target.value)
@@ -556,7 +494,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={firstPortoflioItemListProjectName}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstPortoflioItemListProjectName(e.target.value)
@@ -569,7 +506,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={firstPortoflioItemListProjectUrl}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstPortoflioItemListProjectUrl(e.target.value)
@@ -582,7 +518,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={secondPortoflioItemListProjectDescription}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondPortoflioItemListProjectDescription(e.target.value)
@@ -595,7 +530,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={secondPortoflioItemListProjectName}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondPortoflioItemListProjectName(e.target.value)
@@ -608,7 +542,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={secondPortoflioItemListProjectUrl}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondPortoflioItemListProjectUrl(e.target.value)
@@ -621,7 +554,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={thirdPortoflioItemListProjectDescription}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdPortoflioItemListProjectDescription(e.target.value)
@@ -634,7 +566,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={thirdPortoflioItemListProjectName}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdPortoflioItemListProjectName(e.target.value)
@@ -647,7 +578,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={thirdPortoflioItemListProjectUrl}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdPortoflioItemListProjectUrl(e.target.value)
@@ -669,7 +599,6 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок раздела "Команда".</label>
 						<input
 							type="text"
-							placeholder={teamHeader}
 							className={styles.input}
 							onChange={(e) => setTeamHeader(e.target.value)}
 						/>
@@ -680,7 +609,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={teamDescription}
 							className={styles.input}
 							onChange={(e) => setTeamDescription(e.target.value)}
 						/>
@@ -691,7 +619,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={firstTeamItemListEmployeeName}
 							className={styles.input}
 							onChange={(e) => setFirstTeamItemListEmployeeName(e.target.value)}
 						/>
@@ -702,7 +629,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={firstTeamItemListEmployeePosition}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstTeamItemListEmployeePosition(e.target.value)
@@ -715,7 +641,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={secondTeamItemListEmployeeName}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondTeamItemListEmployeeName(e.target.value)
@@ -728,7 +653,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={secondTeamItemListEmployeePosition}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondTeamItemListEmployeePosition(e.target.value)
@@ -741,7 +665,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={thirdTeamItemListEmployeeName}
 							className={styles.input}
 							onChange={(e) => setThirdTeamItemListEmployeeName(e.target.value)}
 						/>
@@ -752,7 +675,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={thirdTeamItemListEmployeePosition}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdTeamItemListEmployeePosition(e.target.value)
@@ -778,7 +700,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={contactHeader}
 							className={styles.input}
 							onChange={(e) => setContactHeader(e.target.value)}
 						/>
@@ -789,7 +710,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={contactDescription}
 							className={styles.input}
 							onChange={(e) => setContactDescription(e.target.value)}
 						/>
@@ -800,7 +720,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={firstContactItemListName}
 							className={styles.input}
 							onChange={(e) => setFirstContactItemListName(e.target.value)}
 						/>
@@ -811,7 +730,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={firstContactItemListInfo}
 							className={styles.input}
 							onChange={(e) => setFirstContactItemListInfo(e.target.value)}
 						/>
@@ -822,7 +740,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={secondContactItemListName}
 							className={styles.input}
 							onChange={(e) => setSecondContactItemListName(e.target.value)}
 						/>
@@ -833,7 +750,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={secondContactItemListInfo}
 							className={styles.input}
 							onChange={(e) => setSecondContactItemListInfo(e.target.value)}
 						/>
@@ -844,7 +760,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={thirdContactItemListName}
 							className={styles.input}
 							onChange={(e) => setThirdContactItemListName(e.target.value)}
 						/>
@@ -855,7 +770,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={thirdContactItemListInfo}
 							className={styles.input}
 							onChange={(e) => setThirdContactItemListInfo(e.target.value)}
 						/>
@@ -877,7 +791,6 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
-							placeholder={footerDescription}
 							className={styles.input}
 							onChange={(e) => setFooterDescription(e.target.value)}
 						/>
