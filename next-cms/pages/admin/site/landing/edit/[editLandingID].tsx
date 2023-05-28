@@ -1061,7 +1061,9 @@ const LandingEdit = () => {
 	if (isConfirmationPage) {
 		view = (
 			<div>
-				<h1 className={styles.h1}>Вы точно хотите изменить шаблон?</h1>
+				<h1 className={styles.h1}>
+					Вы точно хотите изменить шаблон сайта лендинга?
+				</h1>
 				<button className={styles.btnAction} onClick={changeToComponentsPage}>
 					Да
 				</button>

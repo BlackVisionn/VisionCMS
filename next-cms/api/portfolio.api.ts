@@ -15,6 +15,45 @@ export class PortfolioAPI {
 		return data;
 	}
 
+	public static async getPortoflioData(portfolioId: number) {
+		const response = await fetch(
+			`http://localhost:5000/portfolio-components/portfolio-data/${portfolioId}`,
+			{
+				method: 'GET',
+			},
+		);
+		const data = await response.json();
+
+		return data;
+	}
+
+	public static async updatePortfolioComponents(
+		id: number,
+		useHeader: boolean,
+		useAbout: boolean,
+		useProjects: boolean,
+		useWork: boolean,
+		useEducation: boolean,
+		useLanguages: boolean,
+		useContact: boolean,
+		useFooter: boolean,
+	) {
+		await fetch(`http://localhost:5000/portfolio-components/${id}`, {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				useHeader,
+				useAbout,
+				useProjects,
+				useWork,
+				useEducation,
+				useLanguages,
+				useContact,
+				useFooter,
+			}),
+		});
+	}
+
 	public static async getComponentsForPortfolioByPortfolioId(
 		portfolioId: number,
 	) {

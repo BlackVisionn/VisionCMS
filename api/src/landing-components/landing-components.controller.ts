@@ -26,7 +26,7 @@ export class LandingComponentsController {
 		this.git = simpleGit();
 	}
 	@Patch(':id')
-	async updateLanding(
+	async updateLandingComponents(
 		@Param('id') id: number,
 		@Body() updateLandingComponentsDto: UpdateLandingComponentsDto,
 	) {

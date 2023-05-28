@@ -15,6 +15,7 @@ import * as fse from 'fs-extra';
 import simpleGit, { SimpleGit } from 'simple-git';
 import * as archiver from 'archiver';
 import { PortfolioComponents } from 'src/entities/portfolio-components.entity';
+import { UpdatePortfolioComponentsDto } from './dto/update-portfolio-components.dto';
 
 @Controller('portfolio-components')
 export class PortfolioComponentsController {
@@ -33,6 +34,21 @@ export class PortfolioComponentsController {
 		);
 
 		return portfolioComponents;
+	}
+
+	@Patch(':id')
+	async updatePortfolioComponents(
+		@Param('id') id: number,
+		@Body() updatePortfolioComponentsDto: UpdatePortfolioComponentsDto,
+	) {
+		return await this.portfolioComponentsService.update(
+			id,
+			updatePortfolioComponentsDto,
+		);
+	}
+	@Get('portfolio-data/:portfolioId')
+	async getPortfolioData(@Param('portfolioId') portfolioId: number) {
+		return await this.portfolioComponentsService.findPortfolio(portfolioId);
 	}
 
 	@Get(':portfolioId')

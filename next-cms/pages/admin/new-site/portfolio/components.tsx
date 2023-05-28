@@ -97,7 +97,7 @@ const PortfolioComponents = () => {
 	const [footerUrlVk, setFooterUrlVk] = useState<any>();
 	const [footerUrlTelegram, setFooterUrlTelegram] = useState<any>();
 	const [footerUrlGit, setFooterUrlGit] = useState<any>();
-	const templatNameInput = (
+	const templateNameInput = (
 		<div>
 			<h1 className={styles.h1}>Введите название своего шаблона.</h1>
 			<div className={styles.inputWrapper}>
@@ -1133,7 +1133,7 @@ const PortfolioComponents = () => {
 	} else if (isCreationPage) {
 		view = (
 			<div>
-				{templatNameInput}
+				{templateNameInput}
 				{empty}
 				{header}
 				{about}
