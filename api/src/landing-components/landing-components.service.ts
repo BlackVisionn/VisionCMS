@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateLandingComponentsDto } from './dto/create-landing-components.dto';
 import { LandingComponents } from 'src/entities/landing-components.entity';
+import { UpdateLandingComponentsDto } from './dto/update-landing-components.dto';
 
 @Injectable()
 export class LandingComponentsService {
@@ -14,6 +15,22 @@ export class LandingComponentsService {
 		createLandingComponentsDto: CreateLandingComponentsDto,
 	): Promise<LandingComponents> {
 		return this.repo.save(createLandingComponentsDto);
+	}
+
+	async update(
+		id: number,
+		updateLandingComponentsDto: UpdateLandingComponentsDto,
+	) {
+		const landingComponents = await this.repo.findOne({
+			where: {
+				id: id,
+			},
+		});
+		if (!landingComponents) {
+			throw new BadRequestException('LandingComponents not found');
+		}
+		Object.assign(landingComponents, updateLandingComponentsDto);
+		return this.repo.save(landingComponents);
 	}
 
 	async findComponentsByLandingId(landingId: number) {

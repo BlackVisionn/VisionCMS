@@ -27,6 +27,18 @@ export class LandingAPI {
 		return data;
 	}
 
+	public static async getLandingData(landingId: number) {
+		const response = await fetch(
+			`http://localhost:5000/landing-components/landing-data/${landingId}`,
+			{
+				method: 'GET',
+			},
+		);
+		const data = await response.json();
+
+		return data;
+	}
+
 	public static async delete(siteID: number) {
 		await fetch(`http://localhost:5000/landing/${siteID}`, {
 			method: 'DELETE',
@@ -174,6 +186,33 @@ export class LandingAPI {
 				thirdContactItemListInfo,
 				footerDescription,
 				userId,
+			}),
+		});
+	}
+
+	public static async updateLandingComponents(
+		id: number,
+		useHeader: boolean,
+		useFeatures: boolean,
+		useAbout: boolean,
+		useServices: boolean,
+		usePortfolio: boolean,
+		useTeam: boolean,
+		useContact: boolean,
+		useFooter: boolean,
+	) {
+		await fetch(`http://localhost:5000/landing-components/${id}`, {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				useHeader,
+				useFeatures,
+				useAbout,
+				useServices,
+				usePortfolio,
+				useTeam,
+				useContact,
+				useFooter,
 			}),
 		});
 	}

@@ -28,7 +28,7 @@ export class Landing {
 	headerDescription: string;
 	@Column({ default: 'Особенности' })
 	featuresNavItemName: string;
-	@Column({ default: '>О нас' })
+	@Column({ default: 'О нас' })
 	aboutNavItemName: string;
 	@Column({ default: 'Услуги' })
 	servicesNavItemName: string;

@@ -15,6 +15,7 @@ import * as fse from 'fs-extra';
 import simpleGit, { SimpleGit } from 'simple-git';
 import * as archiver from 'archiver';
 import { LandingComponents } from 'src/entities/landing-components.entity';
+import { UpdateLandingComponentsDto } from './dto/update-landing-components.dto';
 
 @Controller('landing-components')
 export class LandingComponentsController {
@@ -23,6 +24,16 @@ export class LandingComponentsController {
 		private readonly landingComponentsService: LandingComponentsService,
 	) {
 		this.git = simpleGit();
+	}
+	@Patch(':id')
+	async updateLanding(
+		@Param('id') id: number,
+		@Body() updateLandingComponentsDto: UpdateLandingComponentsDto,
+	) {
+		return await this.landingComponentsService.update(
+			id,
+			updateLandingComponentsDto,
+		);
 	}
 	@Post('new')
 	async createLandingComponents(
@@ -41,17 +52,17 @@ export class LandingComponentsController {
 			landingId,
 		);
 	}
+	@Get('landing-data/:landingId')
+	async getLandingData(@Param('landingId') landingId: number) {
+		return await this.landingComponentsService.findLanding(landingId);
+	}
 
 	@Get('download/:landingId')
-	async downloadLanding(
-		@Res() res,
-		@Param('landingId') landingId: number,
-	) {
+	async downloadLanding(@Res() res, @Param('landingId') landingId: number) {
 		const landingData = await this.landingComponentsService.findLanding(
 			landingId,
 		);
-		const templateURL =
-			'https://github.com/BlackVisionn/landing-template.git';
+		const templateURL = 'https://github.com/BlackVisionn/landing-template.git';
 		const templateName = 'landing-template';
 		const pathToArchive = `./sites-templates/${landingId}-landing-template`;
 		const pathForClone = path.join(pathToArchive, templateName);
@@ -117,8 +128,8 @@ export class LandingComponentsController {
 			componentName: '<Header />',
 			componentImport: 'import Header from "@/components/Header";',
 		};
-		
-		const indexPath = path.join(pathToTemplateFolder, 'pages/index.tsx');		
+
+		const indexPath = path.join(pathToTemplateFolder, 'pages/index.tsx');
 
 		// HEADER
 		if (landingData.useHeader) {
@@ -133,7 +144,7 @@ export class LandingComponentsController {
 				header.componentImport,
 				header.componentFilePath,
 			);
-		}		
+		}
 	}
 	private async deleteComponentFromTemplate(
 		indexPath: string,
