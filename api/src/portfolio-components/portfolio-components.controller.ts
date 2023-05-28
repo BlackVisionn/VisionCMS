@@ -16,6 +16,7 @@ import simpleGit, { SimpleGit } from 'simple-git';
 import * as archiver from 'archiver';
 import { PortfolioComponents } from 'src/entities/portfolio-components.entity';
 import { UpdatePortfolioComponentsDto } from './dto/update-portfolio-components.dto';
+import { exec, execSync } from 'child_process';
 
 @Controller('portfolio-components')
 export class PortfolioComponentsController {
@@ -96,6 +97,7 @@ export class PortfolioComponentsController {
 	private async cloneTemplate(pathForClone: string, templateURL: string) {
 		await fse.emptyDir(pathForClone);
 		await this.git.clone(templateURL, pathForClone);
+		// await execSync('npm i', { cwd: pathForClone });
 	}
 	private async createArchive(
 		pathToArchive: string,
@@ -194,14 +196,33 @@ export class PortfolioComponentsController {
 		};
 		const indexPath = path.join(pathToTemplateFolder, 'pages/index.tsx');
 
-		let fileContent;
-
 		// HEADER
 		if (portfolioData.useHeader) {
-			// fileContent = fse.readFileSync(headerPath, 'utf-8');
-			// fileContent = fileContent.replace('<About />', '');
-			// fs.writeFileSync(filePath, fileContent, 'utf-8');
-			// то меняем значения которые задал пользователь этому компоненту
+			await this.changeComponentInTemplate(
+				header.componentFilePath,
+				'headerTitle',
+				portfolioData.portfolio.headerTitle,
+			);
+			await this.changeComponentInTemplate(
+				header.componentFilePath,
+				'headerDescription',
+				portfolioData.portfolio.headerDescription,
+			);
+			await this.changeComponentInTemplate(
+				header.componentFilePath,
+				'headerUrlVk',
+				portfolioData.portfolio.headerUrlVk,
+			);
+			await this.changeComponentInTemplate(
+				header.componentFilePath,
+				'headerUrlTelegram',
+				portfolioData.portfolio.headerUrlTelegram,
+			);
+			await this.changeComponentInTemplate(
+				header.componentFilePath,
+				'headerUrlGit',
+				portfolioData.portfolio.headerUrlGit,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -212,6 +233,21 @@ export class PortfolioComponentsController {
 		}
 		// ABOUT
 		if (portfolioData.useAbout) {
+			await this.changeComponentInTemplate(
+				about.componentFilePath,
+				'aboutTitle',
+				portfolioData.portfolio.aboutTitle,
+			);
+			await this.changeComponentInTemplate(
+				about.componentFilePath,
+				'aboutFirstParagraph',
+				portfolioData.portfolio.aboutFirstParagraph,
+			);
+			await this.changeComponentInTemplate(
+				about.componentFilePath,
+				'aboutSecondParagraph',
+				portfolioData.portfolio.aboutSecondParagraph,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -222,6 +258,56 @@ export class PortfolioComponentsController {
 		}
 		// PROJECTS
 		if (portfolioData.useProjects) {
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'projectsTitle',
+				portfolioData.portfolio.projectsTitle,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'firstProjectUrl',
+				portfolioData.portfolio.firstProjectUrl,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'firstProjectTitle',
+				portfolioData.portfolio.firstProjectTitle,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'firstProjectDate',
+				portfolioData.portfolio.firstProjectDate,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'secondProjectUrl',
+				portfolioData.portfolio.secondProjectUrl,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'secondProjectTitle',
+				portfolioData.portfolio.secondProjectTitle,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'secondProjectDate',
+				portfolioData.portfolio.secondProjectDate,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'thirdProjectUrl',
+				portfolioData.portfolio.thirdProjectUrl,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'thirdProjectTitle',
+				portfolioData.portfolio.thirdProjectTitle,
+			);
+			await this.changeComponentInTemplate(
+				projects.componentFilePath,
+				'thirdProjectDate',
+				portfolioData.portfolio.thirdProjectDate,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -233,6 +319,61 @@ export class PortfolioComponentsController {
 
 		//WORK
 		if (portfolioData.useWork) {
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'workTitle',
+				portfolioData.portfolio.workTitle,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'firstWorkDates',
+				portfolioData.portfolio.firstWorkDates,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'firstWorkPosition',
+				portfolioData.portfolio.firstWorkPosition,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'firstWorkUrl',
+				portfolioData.portfolio.firstWorkUrl,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'firstWorkCompanyName',
+				portfolioData.portfolio.firstWorkCompanyName,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'firstWorkDescription',
+				portfolioData.portfolio.firstWorkDescription,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'secondWorkDates',
+				portfolioData.portfolio.secondWorkDates,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'secondWorkPosition',
+				portfolioData.portfolio.secondWorkPosition,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'secondWorkUrl',
+				portfolioData.portfolio.secondWorkUrl,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'secondWorkCompanyName',
+				portfolioData.portfolio.secondWorkCompanyName,
+			);
+			await this.changeComponentInTemplate(
+				work.componentFilePath,
+				'secondWorkDescription',
+				portfolioData.portfolio.secondWorkDescription,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -244,6 +385,56 @@ export class PortfolioComponentsController {
 
 		//EDUCATION
 		if (portfolioData.useEducation) {
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'educationTitle',
+				portfolioData.portfolio.educationTitle,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'firstEducationDates',
+				portfolioData.portfolio.firstEducationDates,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'firstEducationTitle',
+				portfolioData.portfolio.firstEducationTitle,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'firstEducationStudyPlace',
+				portfolioData.portfolio.firstEducationStudyPlace,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'secondEducationDates',
+				portfolioData.portfolio.secondEducationDates,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'secondEducationTitle',
+				portfolioData.portfolio.secondEducationTitle,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'secondEducationStudyPlace',
+				portfolioData.portfolio.secondEducationStudyPlace,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'thirdEducationDates',
+				portfolioData.portfolio.thirdEducationDates,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'thirdEducationTitle',
+				portfolioData.portfolio.thirdEducationTitle,
+			);
+			await this.changeComponentInTemplate(
+				education.componentFilePath,
+				'thirdEducationStudyPlace',
+				portfolioData.portfolio.thirdEducationStudyPlace,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -255,6 +446,41 @@ export class PortfolioComponentsController {
 
 		//LANGUAGES
 		if (portfolioData.useLanguages) {
+			await this.changeComponentInTemplate(
+				languages.componentFilePath,
+				'languagesTitle',
+				portfolioData.portfolio.languagesTitle,
+			);
+			await this.changeComponentInTemplate(
+				languages.componentFilePath,
+				'firstLanguageName',
+				portfolioData.portfolio.firstLanguageName,
+			);
+			await this.changeComponentInTemplate(
+				languages.componentFilePath,
+				'firstLanguageLevel',
+				portfolioData.portfolio.firstLanguageLevel,
+			);
+			await this.changeComponentInTemplate(
+				languages.componentFilePath,
+				'secondLanguageName',
+				portfolioData.portfolio.secondLanguageName,
+			);
+			await this.changeComponentInTemplate(
+				languages.componentFilePath,
+				'secondLanguageLevel',
+				portfolioData.portfolio.secondLanguageLevel,
+			);
+			await this.changeComponentInTemplate(
+				languages.componentFilePath,
+				'thirdLanguageName',
+				portfolioData.portfolio.thirdLanguageName,
+			);
+			await this.changeComponentInTemplate(
+				languages.componentFilePath,
+				'thirdLanguageLevel',
+				portfolioData.portfolio.thirdLanguageLevel,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -266,6 +492,31 @@ export class PortfolioComponentsController {
 
 		//CONTACT
 		if (portfolioData.useContact) {
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'contactTitle',
+				portfolioData.portfolio.contactTitle,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'firstInputPlaceholderName',
+				portfolioData.portfolio.firstInputPlaceholderName,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'secondInputPlaceholderName',
+				portfolioData.portfolio.secondInputPlaceholderName,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'textareaPlaceholderName',
+				portfolioData.portfolio.textareaPlaceholderName,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'buttonName',
+				portfolioData.portfolio.buttonName,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -277,6 +528,36 @@ export class PortfolioComponentsController {
 
 		//FOOTER
 		if (portfolioData.useFooter) {
+			await this.changeComponentInTemplate(
+				footer.componentFilePath,
+				'footerText',
+				portfolioData.portfolio.footerText,
+			);
+			await this.changeComponentInTemplate(
+				footer.componentFilePath,
+				'footerUrl',
+				portfolioData.portfolio.footerUrl,
+			);
+			await this.changeComponentInTemplate(
+				footer.componentFilePath,
+				'footerUrlName',
+				portfolioData.portfolio.footerUrlName,
+			);
+			await this.changeComponentInTemplate(
+				footer.componentFilePath,
+				'footerUrlVk',
+				portfolioData.portfolio.footerUrlVk,
+			);
+			await this.changeComponentInTemplate(
+				footer.componentFilePath,
+				'footerUrlTelegram',
+				portfolioData.portfolio.footerUrlTelegram,
+			);
+			await this.changeComponentInTemplate(
+				footer.componentFilePath,
+				'footerUrlGit',
+				portfolioData.portfolio.footerUrlGit,
+			);
 		} else {
 			await this.deleteComponentFromTemplate(
 				indexPath,
@@ -303,5 +584,15 @@ export class PortfolioComponentsController {
 		fse.writeFileSync(indexPath, fileContent, 'utf-8');
 		fileContent = fileContent.replace(/^\s*[\r\n]/gm, '');
 		fse.writeFileSync(indexPath, fileContent, 'utf-8');
+	}
+	private async changeComponentInTemplate(
+		filePath: string,
+		oldElement: string,
+		newElement: string,
+	) {
+		let fileContent;
+		fileContent = fse.readFileSync(filePath, 'utf-8');
+		fileContent = fileContent.replace(oldElement, newElement);
+		fse.writeFileSync(filePath, fileContent, 'utf-8');
 	}
 }
