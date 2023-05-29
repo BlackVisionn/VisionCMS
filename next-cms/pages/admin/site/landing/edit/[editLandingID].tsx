@@ -213,6 +213,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок сайта.</label>
 						<input
 							type="text"
+							placeholder={headerName}
 							className={styles.input}
 							onChange={(e) => setHeaderName(e.target.value)}
 						/>
@@ -221,6 +222,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Краткое описание заголовка.</label>
 						<input
 							type="text"
+							placeholder={headerDescription}
 							className={styles.input}
 							onChange={(e) => setHeaderDescription(e.target.value)}
 						/>
@@ -233,6 +235,7 @@ const LandingEdit = () => {
 							</label>
 							<input
 								type="text"
+								placeholder={featuresNavItemName}
 								className={styles.input}
 								onChange={(e) => setFeaturesNavItemName(e.target.value)}
 							/>
@@ -248,6 +251,7 @@ const LandingEdit = () => {
 							</label>
 							<input
 								type="text"
+								placeholder={aboutNavItemName}
 								className={styles.input}
 								onChange={(e) => setAboutNavItemName(e.target.value)}
 							/>
@@ -263,6 +267,7 @@ const LandingEdit = () => {
 							</label>
 							<input
 								type="text"
+								placeholder={servicesNavItemName}
 								className={styles.input}
 								onChange={(e) => setServicesNavItemName(e.target.value)}
 							/>
@@ -278,6 +283,7 @@ const LandingEdit = () => {
 							</label>
 							<input
 								type="text"
+								placeholder={portfolioNavItemName}
 								className={styles.input}
 								onChange={(e) => setPortfolioNavItemName(e.target.value)}
 							/>
@@ -292,6 +298,7 @@ const LandingEdit = () => {
 							</label>
 							<input
 								type="text"
+								placeholder={teamNavItemName}
 								className={styles.input}
 								onChange={(e) => setTeamNavItemName(e.target.value)}
 							/>
@@ -308,6 +315,7 @@ const LandingEdit = () => {
 								</label>
 								<input
 									type="text"
+									placeholder={contactNavItemName}
 									className={styles.input}
 									onChange={(e) => setContactNavItemName(e.target.value)}
 								/>
@@ -319,6 +327,7 @@ const LandingEdit = () => {
 								</label>
 								<input
 									type="text"
+									placeholder={buttonName}
 									className={styles.input}
 									onChange={(e) => setButtonName(e.target.value)}
 								/>
@@ -345,6 +354,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={featuresHeader}
 							className={styles.input}
 							onChange={(e) => setFeaturesHeader(e.target.value)}
 						/>
@@ -353,6 +363,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Введите первую особенность.</label>
 						<input
 							type="text"
+							placeholder={firstFeaturesItemList}
 							className={styles.input}
 							onChange={(e) => setFirstFeaturesItemList(e.target.value)}
 						/>
@@ -361,6 +372,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Введите вторую особенность.</label>
 						<input
 							type="text"
+							placeholder={secondFeaturesItemList}
 							className={styles.input}
 							onChange={(e) => setSecondFeaturesItemList(e.target.value)}
 						/>
@@ -369,6 +381,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Введите третью особенность.</label>
 						<input
 							type="text"
+							placeholder={thirdFeaturesItemList}
 							className={styles.input}
 							onChange={(e) => setThirdFeaturesItemList(e.target.value)}
 						/>
@@ -388,6 +401,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок раздела "О нас".</label>
 						<input
 							type="text"
+							placeholder={aboutHeader}
 							className={styles.input}
 							onChange={(e) => setAboutHeader(e.target.value)}
 						/>
@@ -398,6 +412,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={aboutDescription}
 							className={styles.input}
 							onChange={(e) => setAboutDescription(e.target.value)}
 						/>
@@ -417,6 +432,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок раздела "Услуги".</label>
 						<input
 							type="text"
+							placeholder={servicesHeader}
 							className={styles.input}
 							onChange={(e) => setServicesHeader(e.target.value)}
 						/>
@@ -425,6 +441,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Первая услуга.</label>
 						<input
 							type="text"
+							placeholder={firstServicesItemList}
 							className={styles.input}
 							onChange={(e) => setFirstServicesItemList(e.target.value)}
 						/>
@@ -433,6 +450,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Вторая услуга.</label>
 						<input
 							type="text"
+							placeholder={secondServicesItemList}
 							className={styles.input}
 							onChange={(e) => setSecondServicesItemList(e.target.value)}
 						/>
@@ -441,6 +459,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Третья услуга.</label>
 						<input
 							type="text"
+							placeholder={thirdServicesItemList}
 							className={styles.input}
 							onChange={(e) => setThirdServicesItemList(e.target.value)}
 						/>
@@ -462,6 +481,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={portfolioHeader}
 							className={styles.input}
 							onChange={(e) => setPortfolioHeader(e.target.value)}
 						/>
@@ -472,6 +492,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={portfolioDescription}
 							className={styles.input}
 							onChange={(e) => setPortfolioDescription(e.target.value)}
 						/>
@@ -482,6 +503,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={firstPortoflioItemListProjectDescription}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstPortoflioItemListProjectDescription(e.target.value)
@@ -494,6 +516,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={firstPortoflioItemListProjectName}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstPortoflioItemListProjectName(e.target.value)
@@ -506,6 +529,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={firstPortoflioItemListProjectUrl}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstPortoflioItemListProjectUrl(e.target.value)
@@ -518,6 +542,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={secondPortoflioItemListProjectDescription}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondPortoflioItemListProjectDescription(e.target.value)
@@ -530,6 +555,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={secondPortoflioItemListProjectName}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondPortoflioItemListProjectName(e.target.value)
@@ -542,6 +568,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={secondPortoflioItemListProjectUrl}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondPortoflioItemListProjectUrl(e.target.value)
@@ -554,6 +581,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={thirdPortoflioItemListProjectDescription}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdPortoflioItemListProjectDescription(e.target.value)
@@ -566,6 +594,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={thirdPortoflioItemListProjectName}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdPortoflioItemListProjectName(e.target.value)
@@ -578,6 +607,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={thirdPortoflioItemListProjectUrl}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdPortoflioItemListProjectUrl(e.target.value)
@@ -599,6 +629,7 @@ const LandingEdit = () => {
 						<label className={styles.label}>Заголовок раздела "Команда".</label>
 						<input
 							type="text"
+							placeholder={teamHeader}
 							className={styles.input}
 							onChange={(e) => setTeamHeader(e.target.value)}
 						/>
@@ -609,6 +640,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={teamDescription}
 							className={styles.input}
 							onChange={(e) => setTeamDescription(e.target.value)}
 						/>
@@ -619,6 +651,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={firstTeamItemListEmployeeName}
 							className={styles.input}
 							onChange={(e) => setFirstTeamItemListEmployeeName(e.target.value)}
 						/>
@@ -629,6 +662,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={firstTeamItemListEmployeePosition}
 							className={styles.input}
 							onChange={(e) =>
 								setFirstTeamItemListEmployeePosition(e.target.value)
@@ -641,6 +675,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={secondTeamItemListEmployeeName}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondTeamItemListEmployeeName(e.target.value)
@@ -653,6 +688,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={secondTeamItemListEmployeePosition}
 							className={styles.input}
 							onChange={(e) =>
 								setSecondTeamItemListEmployeePosition(e.target.value)
@@ -665,6 +701,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={thirdTeamItemListEmployeeName}
 							className={styles.input}
 							onChange={(e) => setThirdTeamItemListEmployeeName(e.target.value)}
 						/>
@@ -675,6 +712,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={thirdTeamItemListEmployeePosition}
 							className={styles.input}
 							onChange={(e) =>
 								setThirdTeamItemListEmployeePosition(e.target.value)
@@ -700,6 +738,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={contactHeader}
 							className={styles.input}
 							onChange={(e) => setContactHeader(e.target.value)}
 						/>
@@ -710,6 +749,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={contactDescription}
 							className={styles.input}
 							onChange={(e) => setContactDescription(e.target.value)}
 						/>
@@ -720,6 +760,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={firstContactItemListName}
 							className={styles.input}
 							onChange={(e) => setFirstContactItemListName(e.target.value)}
 						/>
@@ -730,6 +771,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={firstContactItemListInfo}
 							className={styles.input}
 							onChange={(e) => setFirstContactItemListInfo(e.target.value)}
 						/>
@@ -740,6 +782,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={secondContactItemListName}
 							className={styles.input}
 							onChange={(e) => setSecondContactItemListName(e.target.value)}
 						/>
@@ -750,6 +793,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={secondContactItemListInfo}
 							className={styles.input}
 							onChange={(e) => setSecondContactItemListInfo(e.target.value)}
 						/>
@@ -760,6 +804,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={thirdContactItemListName}
 							className={styles.input}
 							onChange={(e) => setThirdContactItemListName(e.target.value)}
 						/>
@@ -770,6 +815,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={thirdContactItemListInfo}
 							className={styles.input}
 							onChange={(e) => setThirdContactItemListInfo(e.target.value)}
 						/>
@@ -791,6 +837,7 @@ const LandingEdit = () => {
 						</label>
 						<input
 							type="text"
+							placeholder={footerDescription}
 							className={styles.input}
 							onChange={(e) => setFooterDescription(e.target.value)}
 						/>

@@ -13,6 +13,7 @@ interface Props {
 const Landing = ({ data }: Props) => {
 	const deleteLanding = async () => {
 		await LandingAPI.delete(data.id);
+		await LandingAPI.deleteFromServer(data.id);
 	};
 	const downLoadLandingTemplate = async () => {
 		try {

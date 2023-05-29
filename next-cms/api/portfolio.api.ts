@@ -15,6 +15,15 @@ export class PortfolioAPI {
 		return data;
 	}
 
+	public static async deleteFromServer(portfolioId: number) {
+		await fetch(
+			`http://localhost:5000/portfolio-components/delete-template/${portfolioId}`,
+			{
+				method: 'GET',
+			},
+		);
+	}
+
 	public static async getPortoflioData(portfolioId: number) {
 		const response = await fetch(
 			`http://localhost:5000/portfolio-components/portfolio-data/${portfolioId}`,

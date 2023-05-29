@@ -15,6 +15,15 @@ export class LandingAPI {
 		return data;
 	}
 
+	public static async deleteFromServer(landingId: number) {
+		await fetch(
+			`http://localhost:5000/landing-components/delete-template/${landingId}`,
+			{
+				method: 'GET',
+			},
+		);
+	}
+
 	public static async getComponentsForLandingByLandingId(landingId: number) {
 		const response = await fetch(
 			`http://localhost:5000/landing-components/${landingId}`,

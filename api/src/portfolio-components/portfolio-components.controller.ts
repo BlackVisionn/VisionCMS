@@ -16,7 +16,7 @@ import simpleGit, { SimpleGit } from 'simple-git';
 import * as archiver from 'archiver';
 import { PortfolioComponents } from 'src/entities/portfolio-components.entity';
 import { UpdatePortfolioComponentsDto } from './dto/update-portfolio-components.dto';
-import { exec, execSync } from 'child_process';
+import * as escape from 'escape-html';
 
 @Controller('portfolio-components')
 export class PortfolioComponentsController {
@@ -57,6 +57,16 @@ export class PortfolioComponentsController {
 		return await this.portfolioComponentsService.findComponentsByPortfolioId(
 			portfolioId,
 		);
+	}
+	@Get('delete-template/:portfolioId')
+	async deletePortfolioTemplate(@Param('portfolioId') portfolioId: number) {
+		const pathToFolder = `./sites-templates/${portfolioId}-portfolio-template`;
+		const createdArchivePath = path.join(
+			'./sites-templates',
+			`${portfolioId}-portfolio-template.zip`,
+		);
+		this.removeFolder(pathToFolder);
+		this.removeZipArchive(createdArchivePath);
 	}
 
 	@Get('download/:portfolioId')
@@ -592,7 +602,25 @@ export class PortfolioComponentsController {
 	) {
 		let fileContent;
 		fileContent = fse.readFileSync(filePath, 'utf-8');
-		fileContent = fileContent.replace(oldElement, newElement);
+		const escapedNewElement = escape(newElement);
+		fileContent = fileContent.replace(oldElement, escapedNewElement);
 		fse.writeFileSync(filePath, fileContent, 'utf-8');
+	}
+	private async removeFolder(path: string) {
+		try {
+			await fse.remove(path);
+			console.log(`Папка "${path}" успешно удалена.`);
+		} catch (err) {
+			console.error(`Ошибка при удалении папки "${path}":`, err);
+		}
+	}
+	private async removeZipArchive(path: string) {
+		try {
+			await fse.remove(path);
+
+			console.log(`ZIP-архив "${path}" успешно удален.`);
+		} catch (err) {
+			console.error(`Ошибка при удалении ZIP-архива "${path}":`, err);
+		}
 	}
 }

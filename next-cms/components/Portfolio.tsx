@@ -12,6 +12,7 @@ interface Props {
 const Portfolio = ({ data }: Props) => {
 	const deletePortfolio = async () => {
 		await PortfolioAPI.delete(data.id);
+		await PortfolioAPI.deleteFromServer(data.id);
 	};
 
 	const downLoadPortfolioTemplate = async () => {

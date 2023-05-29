@@ -16,6 +16,7 @@ import simpleGit, { SimpleGit } from 'simple-git';
 import * as archiver from 'archiver';
 import { LandingComponents } from 'src/entities/landing-components.entity';
 import { UpdateLandingComponentsDto } from './dto/update-landing-components.dto';
+import * as escape from 'escape-html';
 
 @Controller('landing-components')
 export class LandingComponentsController {
@@ -55,6 +56,17 @@ export class LandingComponentsController {
 	@Get('landing-data/:landingId')
 	async getLandingData(@Param('landingId') landingId: number) {
 		return await this.landingComponentsService.findLanding(landingId);
+	}
+
+	@Get('delete-template/:landingId')
+	async deleteLandingTemplate(@Param('landingId') landingId: number) {
+		const pathToFolder = `./sites-templates/${landingId}-landing-template`;
+		const createdArchivePath = path.join(
+			'./sites-templates',
+			`${landingId}-landing-template.zip`,
+		);
+		this.removeFolder(pathToFolder);
+		this.removeZipArchive(createdArchivePath);
 	}
 
 	@Get('download/:landingId')
@@ -516,7 +528,25 @@ export class LandingComponentsController {
 	) {
 		let fileContent;
 		fileContent = fse.readFileSync(filePath, 'utf-8');
-		fileContent = fileContent.replace(oldElement, newElement);
+		const escapedNewElement = escape(newElement);
+		fileContent = fileContent.replace(oldElement, escapedNewElement);
 		fse.writeFileSync(filePath, fileContent, 'utf-8');
+	}
+	private async removeFolder(path: string) {
+		try {
+			await fse.remove(path);
+			console.log(`Папка "${path}" успешно удалена.`);
+		} catch (err) {
+			console.error(`Ошибка при удалении папки "${path}":`, err);
+		}
+	}
+	private async removeZipArchive(path: string) {
+		try {
+			await fse.remove(path);
+
+			console.log(`ZIP-архив "${path}" успешно удален.`);
+		} catch (err) {
+			console.error(`Ошибка при удалении ZIP-архива "${path}":`, err);
+		}
 	}
 }
