@@ -135,7 +135,7 @@ export class Landing {
 	thirdContactItemListInfo: string;
 
 	// FOOTER
-	@Column({ default: 'Команда' })
+	@Column({ default: '© 2023 Ваш лендинг. Все права защищены.' })
 	footerDescription: string;
 
 	@Column({ default: null })

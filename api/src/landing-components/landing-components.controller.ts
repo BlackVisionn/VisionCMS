@@ -448,8 +448,43 @@ export class LandingComponentsController {
 		if (landingData.useTeam) {
 			await this.changeComponentInTemplate(
 				team.componentFilePath,
-				'headerName',
-				landingData.landing.headerName,
+				'teamHeader',
+				landingData.landing.teamHeader,
+			);
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'teamDescription',
+				landingData.landing.teamDescription,
+			);
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'firstTeamItemListEmployeeName',
+				landingData.landing.firstTeamItemListEmployeeName,
+			);
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'firstTeamItemListEmployeePosition',
+				landingData.landing.firstTeamItemListEmployeePosition,
+			);
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'secondTeamItemListEmployeeName',
+				landingData.landing.secondTeamItemListEmployeeName,
+			);
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'secondTeamItemListEmployeePosition',
+				landingData.landing.secondTeamItemListEmployeePosition,
+			);
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'thirdTeamItemListEmployeeName',
+				landingData.landing.thirdTeamItemListEmployeeName,
+			);
+			await this.changeComponentInTemplate(
+				team.componentFilePath,
+				'thirdTeamItemListEmployeePosition',
+				landingData.landing.thirdTeamItemListEmployeePosition,
 			);
 		} else {
 			await this.deleteComponentFromTemplate(
@@ -464,8 +499,43 @@ export class LandingComponentsController {
 		if (landingData.useContact) {
 			await this.changeComponentInTemplate(
 				contact.componentFilePath,
-				'headerName',
-				landingData.landing.headerName,
+				'contactHeader',
+				landingData.landing.contactHeader,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'contactDescription',
+				landingData.landing.contactDescription,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'firstContactItemListName',
+				landingData.landing.firstContactItemListName,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'firstContactItemListInfo',
+				landingData.landing.firstContactItemListInfo,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'secondContactItemListName',
+				landingData.landing.secondContactItemListName,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'secondContactItemListInfo',
+				landingData.landing.secondContactItemListInfo,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'thirdContactItemListName',
+				landingData.landing.thirdContactItemListName,
+			);
+			await this.changeComponentInTemplate(
+				contact.componentFilePath,
+				'thirdContactItemListInfo',
+				landingData.landing.thirdContactItemListInfo,
 			);
 		} else {
 			await this.deleteComponentFromTemplate(
@@ -480,8 +550,8 @@ export class LandingComponentsController {
 		if (landingData.useFooter) {
 			await this.changeComponentInTemplate(
 				footer.componentFilePath,
-				'headerName',
-				landingData.landing.headerName,
+				'footerDescription',
+				landingData.landing.footerDescription,
 			);
 		} else {
 			await this.deleteComponentFromTemplate(
