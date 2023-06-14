@@ -1,24 +1,27 @@
-import Layout from '@/layouts/Layout';
+import Layout from '@/components/Layout';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { UserAPI } from '@/api/user.api';
+import styles from '../styles/CreateNewSite.module.css';
 
 const Admin = () => {
 	const [message, setMessage] = useState('');
+
 	const [auth, setAuth] = useState(false);
 	const router = useRouter();
 
 	useEffect(() => {
 		(async () => {
-			const response = await fetch('http://localhost:5000/api/user', {
-				credentials: 'include',
-			});
+			const resp = await UserAPI.getUser();
 
-			const content = await response.json();
-			if (content.name == undefined) {
+			if (resp.name == undefined) {
 				setAuth(false);
 				await router.push('/login');
 			} else {
-				setMessage(`Hello ${content.name}`);
+				setMessage(
+					`Вы вошли как: ${resp.name}.
+					Эл. почта: ${resp.email}`,
+				);
 				setAuth(true);
 			}
 		})();
@@ -26,7 +29,7 @@ const Admin = () => {
 
 	return (
 		<Layout auth={auth}>
-			<h1>{message}</h1>
+			<h1 className={styles.h1}>{message}</h1>
 		</Layout>
 	);
 };

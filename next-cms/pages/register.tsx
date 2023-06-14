@@ -1,8 +1,9 @@
-import Layout from '@/layouts/Layout';
+import Layout from '@/components/Layout';
 import { useRouter } from 'next/router';
 import React, { SyntheticEvent, useState } from 'react';
 import styles from '../styles/Register.module.css';
 import Link from 'next/link';
+import { UserAPI } from '@/api/user.api';
 
 const Register = () => {
 	const [name, setName] = useState('');
@@ -12,16 +13,7 @@ const Register = () => {
 
 	const registerUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
-
-		await fetch('http://localhost:5000/api/register', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name,
-				email,
-				password,
-			}),
-		});
+		await UserAPI.registerUser(name, email, password);
 		await router.push('/login');
 	};
 
@@ -32,11 +24,13 @@ const Register = () => {
 				<div className={styles.shape}></div>
 			</div>
 			<form onSubmit={registerUser} className={styles.form}>
-				<h3 className={styles.logo}>
-					<p>
-						Vision<span>CMS</span>
-					</p>
-				</h3>
+				<Link href="/" className={styles.homeLink}>
+					<h3 className={styles.logo}>
+						<p>
+							Vision<span>CMS</span>
+						</p>
+					</h3>
+				</Link>
 
 				<label className={styles.label} htmlFor="name">
 					Логин
@@ -69,7 +63,7 @@ const Register = () => {
 				/>
 
 				<button className={styles.btn} type="submit">
-					Войти
+					Зарегистрироваться
 				</button>
 				<div className={styles.login}>
 					<label className={styles.label} htmlFor="">
